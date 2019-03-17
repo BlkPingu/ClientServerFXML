@@ -37,13 +37,13 @@ public class Dialogs {
         System.out.println("Enter Cargo Number: ");
     }
     public static void enterWarehouseNumber(){
-        System.out.println("Enter Warehouse Number: ");
+        System.out.println("Enter FXMLWarehouse Number: ");
     }
     public static void warehouseFull(){
-        System.out.println("Warehouse is at full capacity. Storage denied.");
+        System.out.println("FXMLWarehouse is at full capacity. Storage denied.");
     }
     public static void warehouseCapacityLevel(int volumeStored, int capacity){
-        System.out.format("Warehouse now at %7d / %7d", volumeStored, capacity);
+        System.out.format("FXMLWarehouse now at %7d / %7d", volumeStored, capacity);
         System.out.println();
     }
     public static void unabletoStoreCargo(int dimentionsAllowed, int size){

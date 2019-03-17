@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import backend.serialization.SaveObject;
 
-public class Warehouse {
+public class FXMLWarehouse {
 
     private CopyOnWriteArrayList<SaveObject> tableObjects = new CopyOnWriteArrayList<>(
                 List.of(

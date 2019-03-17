@@ -2,6 +2,6 @@ package backend.ioc.observer;
 
 public class CargoAddedObserver {
     /*
-    Warehouse received new cargo
+    FXMLWarehouse received new cargo
      */
 }

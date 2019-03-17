@@ -4,15 +4,15 @@ import java.net.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import backend.serialization.SaveObject;
-import backend.fxmlBackend.Warehouse;
+import backend.fxmlBackend.FXMLWarehouse;
 
 
 public class Server implements Runnable {
     private Socket socket;
-    private Warehouse warehouse;
+    private FXMLWarehouse warehouse;
 
 
-    private Server(Warehouse warehouse, Socket socket){
+    private Server(FXMLWarehouse warehouse, Socket socket){
         this.socket=socket;
         this.warehouse = warehouse;
     }
@@ -89,7 +89,7 @@ public class Server implements Runnable {
 
     public static void main(String[] args) {
 
-        Warehouse warehouse = new Warehouse();
+        FXMLWarehouse warehouse = new FXMLWarehouse();
 
         try(ServerSocket serverSocket=new ServerSocket(1337)) {
 

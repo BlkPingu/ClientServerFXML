@@ -40,7 +40,7 @@ public class Administration{
 
     public synchronized boolean validateMinOneWarehouse() throws NoWarehouseException {
         if(warehouses.isEmpty()){
-            throw new NoWarehouseException("Warehouse List Empty");
+            throw new NoWarehouseException("FXMLWarehouse List Empty");
         }
         else return true;
     }

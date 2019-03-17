@@ -9,29 +9,20 @@ import java.util.ArrayList;
 
 public class JOS {
 
-    public static void save(String filename, ArrayList<SaveObject> items){
+    private static String filename = "./JOS.txt";
+
+    public static void save(ArrayList<SaveObject> items) throws IOException{
         try (ObjectOutputStream oos=new ObjectOutputStream(
                 new FileOutputStream(filename))){
             oos.writeObject(items);
-        } catch (FileNotFoundException e) {}
-        catch (IOException e) {}
+        }
     }
 
 
-    public static ArrayList<SaveObject> load(String filename){
+    public static ArrayList<SaveObject> load() throws IOException, ClassNotFoundException{
         try (ObjectInputStream ois=new ObjectInputStream(
                 new FileInputStream(filename))){
             return (ArrayList<SaveObject>)ois.readObject();
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
         }
-        catch (IOException e) {
-            System.out.println("JBP Exception");
-            e.printStackTrace();
-        }
-        catch (ClassNotFoundException e) {
-            System.out.println("Class not found");
-        }
-        return null;
     }
 }

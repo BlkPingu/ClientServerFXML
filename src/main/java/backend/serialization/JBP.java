@@ -1,6 +1,5 @@
 package backend.serialization;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import java.beans.XMLDecoder;
@@ -10,18 +9,17 @@ import java.beans.XMLEncoder;
 //https://www.youtube.com/watch?v=H-aTpt4NG-s
 
 public class JBP {
-    FileOutputStream fos;
-    XMLEncoder encoder;
+    private static FileOutputStream fos;
+    private static XMLEncoder encoder;
+    private static FileInputStream fis;
+    private static XMLDecoder decoder;
 
-    FileInputStream fis;
-    XMLDecoder decoder;
-
-    final String pathname = "./saveObject.xml";
-
+    private final static String filename = "./saveObject.xml";
 
 
-    public void save(ArrayList<SaveObject> items) throws IOException{
-        fos = new FileOutputStream(new File(pathname));
+
+    public static void save(ArrayList<SaveObject> items) throws IOException{
+        fos = new FileOutputStream(new File(filename));
         encoder = new XMLEncoder(fos);
 
         encoder.writeObject(items);
@@ -30,9 +28,9 @@ public class JBP {
     }
 
 
-    public ArrayList<SaveObject> load() throws IOException{
+    public static ArrayList<SaveObject> load() throws IOException{
 
-        fis = new FileInputStream(new File("./saveObject.xml"));
+        fis = new FileInputStream(new File(filename));
         decoder = new XMLDecoder(fis);
 
         ArrayList<SaveObject> sol = (ArrayList<SaveObject>) decoder.readObject();
@@ -43,7 +41,7 @@ public class JBP {
         return sol;
     }
 
-
+    /*
     public static void main(String[] args) throws IOException {
 
         JBP jbp = new JBP();
@@ -83,8 +81,10 @@ public class JBP {
 
         System.out.println(read);
 
-       */
+
     }
+
+   */
 }
 
 

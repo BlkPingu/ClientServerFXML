@@ -1,6 +1,7 @@
 package backend.fxmlBackend;
 
 import backend.enums.Hazard;
+import backend.serialization.JBP;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
@@ -34,6 +35,8 @@ public class TableController implements Initializable {
     @FXML AnchorPane canvas;
     @FXML private Button addBtn;
     @FXML private Button deleteBtn;
+    @FXML private Button open;
+    @FXML private Button save;
 
     /**
      * Cargo Table
@@ -49,6 +52,9 @@ public class TableController implements Initializable {
     @FXML private TableColumn explosiveCol;
     @FXML private TableColumn propertiesCol;
     @FXML private MenuButton type;
+    @FXML private MenuButton saveWith;
+
+
     @FXML private TextField customerName;
     @FXML private TextField position;
     @FXML private TextField size;
@@ -61,98 +67,35 @@ public class TableController implements Initializable {
     @FXML private RadioButton explosive;
 
     final ObservableList<TableObject> tableData = FXCollections.observableArrayList();
+
     final CopyOnWriteArrayList<SaveObject> saveObjects = new CopyOnWriteArrayList<>();
 
-    public void addData(SaveObject saveObject) throws IOException {
-        Socket client = new Socket("localhost", 1337);
-        sendCode(client,'A');
-        sendObject(client,saveObject);
-        client.close();
-        populateTable();
-
+    //Table Object ArrayList to Save Object ArrayList
+    ArrayList<SaveObject> T2S(){
+        ArrayList<SaveObject> saveObjectArrayList = new ArrayList<>();
+        for (TableObject to : tableData)
+            saveObjectArrayList.add(new SaveObject(
+                    to.getType(), to.getCustomer(), to.getPosition(), to.getSize(), to.isRadioactive(), to.isFlammable(), to.isToxic(), to.isExplosive(), to.getProperties())
+            );
+        return saveObjectArrayList;
     }
 
-    public void getServerData() throws IOException {
-        Socket client = new Socket("localhost", 1337);
-        sendCode(client,'B');
-        populateClientList(toObject(new DataInputStream(client.getInputStream()).readAllBytes()));
-        client.close();
-
-    }
-
-    public void deleteData(SaveObject so) throws IOException {
-        Socket client = new Socket("localhost", 1337);
-        sendCode(client,'C');
-        sendObject(client,so);
-        client.close();
-        populateTable();
-    }
-
-
-
-    public void sendObject(Socket socket, SaveObject saveObject){
-        try {
-            new DataOutputStream(socket.getOutputStream()).write(toBytes(saveObject));
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+    //Save Object ArrayList to Table Object ArrayList
+    void S2T(ArrayList<SaveObject> saveObjects){
+        for (SaveObject so: saveObjects) {
+            tableData.add(new TableObject(so.getType(), so.getCustomer(), so.getPosition(),
+                    so.getSize(), so.getRadioactive(), so.getFlammable(), so.getToxic(), so.getExplosive(), so.getProperties())
+            );
         }
     }
 
-    public void sendCode(Socket socket, char code){
-        try {
-            DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
-            dos.writeChar(code);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
+    static SaveObject tableObject2SaveObject(TableObject to){
+        return new SaveObject(to.getType(), to.getCustomer(), to.getPosition(), to.getSize(), to.isRadioactive(), to.isFlammable(), to.isToxic(), to.isExplosive(), to.getProperties());
     }
 
-    public void addCargoToList(ActionEvent actionEvent) {
-        int pos = Integer.parseInt(position.getText());
-        int siz = Integer.parseInt(size.getText());
-        SaveObject obj = new SaveObject(type.getText(), customerName.getText(), pos, siz, radioactive.isSelected(), flammable.isSelected(), toxic.isSelected(), explosive.isSelected(), pressurizedArmed() + solidArmed() + fragileArmed());
 
-        try {
-            addData(obj);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void populateTable(){
-        typeCol.setCellValueFactory(new PropertyValueFactory<TableObject, String>("Type"));
-        customerCol.setCellValueFactory(new PropertyValueFactory<TableObject, String>("Customer"));
-        positionCol.setCellValueFactory(new PropertyValueFactory<TableObject, Integer>("Position"));
-        sizeCol.setCellValueFactory(new PropertyValueFactory<TableObject, Integer>("Size"));
-        radioactiveCol.setCellValueFactory(new PropertyValueFactory<TableObject, Hazard>("radioactive"));
-        flammableCol.setCellValueFactory(new PropertyValueFactory<TableObject, Hazard>("flammable"));
-        toxicCol.setCellValueFactory(new PropertyValueFactory<TableObject, Hazard>("toxic"));
-        explosiveCol.setCellValueFactory(new PropertyValueFactory<TableObject, Hazard>("explosive"));
-        propertiesCol.setCellValueFactory(new PropertyValueFactory<TableObject, String>("Properties"));
-
-        try {
-            getServerData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        cargoTable.setItems(tableData);
-    }
-
-    public void populateClientList(CopyOnWriteArrayList<SaveObject> tol){
-
-        tableData.clear();
-        saveObjects.clear();
-
-        for (SaveObject so: tol){
-            saveObjects.add(so);
-            tableData.add(new TableObject(so.getType(), so.getCustomer(), so.getPosition(), so.getSize(), so.getRadioactive(), so.getFlammable(), so.getToxic(), so.getExplosive(), so.getProperties()));
-        }
-    }
-
-    public CopyOnWriteArrayList<SaveObject> toObject (byte[] bytes) throws IOException{
+    public CopyOnWriteArrayList<SaveObject> toObject (byte[] bytes) throws IOException {
         ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
         ObjectInput in = null;
         try {
@@ -192,19 +135,142 @@ public class TableController implements Initializable {
         }
     }
 
-    public SaveObject tableObject2SaveObject(TableObject to){
-        return new SaveObject(to.getType(), to.getCustomer(), to.getPosition(), to.getSize(), to.isRadioactive(), to.isFlammable(), to.isToxic(), to.isExplosive(), to.getProperties());
+    public void sendObject(Socket socket, SaveObject saveObject){
+        try {
+            new DataOutputStream(socket.getOutputStream()).write(toBytes(saveObject));
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendCode(Socket socket, char code){
+        try {
+            DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
+            dos.writeChar(code);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
-    public void saveItem(ActionEvent actionEvent) {
-        ArrayList<SaveObject> saveObjectArrayList = new ArrayList<>();
-        for (TableObject to : tableData)
-            saveObjectArrayList.add(new SaveObject(to.getType(),
-                    to.getCustomer(), to.getPosition(), to.getSize(), to.isRadioactive(), to.isFlammable(), to.isToxic(), to.isExplosive(), to.getProperties()));
-        JOS.save("file.txt", saveObjectArrayList);
+
+    public void addData(SaveObject saveObject) throws IOException {
+        Socket client = new Socket("localhost", 1337);
+        sendCode(client,'A');
+        sendObject(client,saveObject);
+        client.close();
+        populateTable();
+    }
+
+    public void getServerData() throws IOException {
+        Socket client = new Socket("localhost", 1337);
+        sendCode(client,'B');
+        populateClientList(toObject(new DataInputStream(client.getInputStream()).readAllBytes()));
+        client.close();
+
+    }
+
+    public void deleteData(SaveObject so) throws IOException {
+        Socket client = new Socket("localhost", 1337);
+        sendCode(client,'C');
+        sendObject(client,so);
+        client.close();
+        populateTable();
+    }
+
+
+
+
+
+    public void addCargoToList(ActionEvent actionEvent) throws IOException{
+        int pos = Integer.parseInt(position.getText());
+        int siz = Integer.parseInt(size.getText());
+        SaveObject obj = new SaveObject(type.getText(), customerName.getText(), pos, siz, radioactive.isSelected(), flammable.isSelected(), toxic.isSelected(), explosive.isSelected(), pressurizedArmed() + solidArmed() + fragileArmed());
+        addData(obj);
+
+    }
+
+    public void populateTable(){
+        typeCol.setCellValueFactory(new PropertyValueFactory<TableObject, String>("Type"));
+        customerCol.setCellValueFactory(new PropertyValueFactory<TableObject, String>("Customer"));
+        positionCol.setCellValueFactory(new PropertyValueFactory<TableObject, Integer>("Position"));
+        sizeCol.setCellValueFactory(new PropertyValueFactory<TableObject, Integer>("Size"));
+        radioactiveCol.setCellValueFactory(new PropertyValueFactory<TableObject, Hazard>("radioactive"));
+        flammableCol.setCellValueFactory(new PropertyValueFactory<TableObject, Hazard>("flammable"));
+        toxicCol.setCellValueFactory(new PropertyValueFactory<TableObject, Hazard>("toxic"));
+        explosiveCol.setCellValueFactory(new PropertyValueFactory<TableObject, Hazard>("explosive"));
+        propertiesCol.setCellValueFactory(new PropertyValueFactory<TableObject, String>("Properties"));
+
+        try {
+            getServerData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        cargoTable.setItems(tableData);
+    }
+
+    public void populateClientList(CopyOnWriteArrayList<SaveObject> tol){
+
+        tableData.clear();
+        saveObjects.clear();
+
+        for (SaveObject so: tol){
+            saveObjects.add(so);
+            tableData.add(new TableObject(so.getType(), so.getCustomer(), so.getPosition(), so.getSize(), so.getRadioactive(), so.getFlammable(), so.getToxic(), so.getExplosive(), so.getProperties()));
+        }
+    }
+
+
+    //darstellungslogic ab hier
+
+
+
+    public void jbpSelected(ActionEvent actionEvent) {
+        saveWith.setText("JBP");
+    }
+    public void josSelected(ActionEvent actionEvent) {
+        saveWith.setText("JOS");
+    }
+
+
+    public void saveItem(ActionEvent actionEvent) throws IOException {
+        switch(saveWith.getText()){
+            case "JBP":
+                JBP.save(T2S());
+                break;
+            case "JOS":
+                JOS.save(T2S());
+                break;
+        }
         System.out.println("all saved");
+
     }
+
+
+
+    public void openItem(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
+        tableData.clear();
+
+        switch(saveWith.getText()){
+            case "JOS":
+                S2T(JOS.load());
+                break;
+            case "JBP":
+                S2T(JBP.load());
+                break;
+            default:
+                System.out.println("Unable to save");
+        }
+        populateTable();
+    }
+
+
+
+
+    /*
     public void openItem(ActionEvent actionEvent) {
         tableData.clear();
         ArrayList<SaveObject> saveObjects = JOS.load("file.txt");
@@ -214,6 +280,16 @@ public class TableController implements Initializable {
         }
         populateTable();
     }
+
+    public void saveItem(ActionEvent actionEvent) {
+        ArrayList<SaveObject> saveObjectArrayList = new ArrayList<>();
+        for (TableObject to : tableData)
+            saveObjectArrayList.add(new SaveObject(to.getType(),
+                    to.getCustomer(), to.getPosition(), to.getSize(), to.isRadioactive(), to.isFlammable(), to.isToxic(), to.isExplosive(), to.getProperties()));
+        JOS.save("file.txt", saveObjectArrayList);
+        System.out.println("all saved");
+    }
+    */
 
 
     @FXML
@@ -231,35 +307,16 @@ public class TableController implements Initializable {
     }
 
 
-    /*
-    @FXML
-    private void handleKeyInput(final InputEvent event) {
-        if (event instanceof KeyEvent) {
-            final KeyEvent keyEvent = (KeyEvent) event;
-            if (keyEvent.isControlDown() && keyEvent.getCode() == KeyCode.A) {
-                provideAboutFunctionality();
-            }
-        }
-    }
-    */
-
-
-    /**
-     * Perform functionality associated with "About" menu selection or CTRL-A.
-     */
-    private void provideAboutFunctionality() {
-        System.out.println("You clicked on About!");
-    }
-
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         disableAll();
         populateTable();
         bindAddButton();
         bindDeleteButton();
+        bindSaveOpen();
     }
 
-    public void enableCommonFields(){
+    private void enableCommonFields(){
         customerName.setDisable(false);
         position.setDisable(false);
         size.setDisable(false);
@@ -270,7 +327,7 @@ public class TableController implements Initializable {
     }
 
     //src: https://stackoverflow.com/questions/23040531/how-to-disable-button-when-textfield-is-empty
-    public void bindAddButton(){
+    private void bindAddButton(){
         BooleanBinding bb = new BooleanBinding() {
             {
                 super.bind(customerName.textProperty(),
@@ -287,11 +344,11 @@ public class TableController implements Initializable {
         addBtn.disableProperty().bind(bb);
     }
 
-    public void bindDeleteButton(){
+    private void bindDeleteButton(){
         deleteBtn.disableProperty().bind(Bindings.isEmpty(cargoTable.getSelectionModel().getSelectedItems()));
     }
 
-    public void disableAll(){
+    private void disableAll(){
         customerName.setDisable(true);
         customerName.setText("");
         position.setDisable(true);
@@ -315,6 +372,12 @@ public class TableController implements Initializable {
         textFieldtoInt(position);
         textFieldtoInt(size);
     }
+
+    private void bindSaveOpen(){
+        save.disableProperty().bind(Bindings.equal(save.textProperty(), "SaveAs"));
+        open.disableProperty().bind(Bindings.equal(save.textProperty(), "SaveAs"));
+    }
+
 
     /**
      * Type
@@ -372,21 +435,21 @@ public class TableController implements Initializable {
         fragile.setDisable(false);
     }
 
-    public String solidArmed(){
+    private String solidArmed(){
         if(solid.isSelected()) return "S";
         else return "-";
     }
-    public String fragileArmed(){
+    private String fragileArmed(){
         if(fragile.isSelected()) return "F";
         else return "-";
     }
-    public String pressurizedArmed(){
+    private String pressurizedArmed(){
         if(pressurized.isSelected()) return "P";
         else return "-";
     }
 
     //src https://stackoverflow.com/questions/7555564/what-is-the-recommended-way-to-make-a-numeric-textfield-in-javafx
-    public void textFieldtoInt(TextField textField){
+    private void textFieldtoInt(TextField textField){
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
                 textField.setText(newValue.replaceAll("[^\\d]", ""));
