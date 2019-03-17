@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+sourceSets {
+    main {
+        sourceSets.main {
+            java {
+                srcDir 'src/main/java' //assume that your source codes are inside this path
+            }
+            resources {
+                srcDirs = ['src/main/resources']
+                exclude "**/*.java"
+            }
+        }
+    }
+}
+
+group 'prog3'
+version '0.1'
+mainClassName='Client'
+
+sourceCompatibility = 1.9
+targetCompatibility = 1.9
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.1.0'
+}

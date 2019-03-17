@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="9.0.1" class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="backend.serialization.SaveObject">
+    <void property="customer">
+     <string>customer1</string>
+    </void>
+    <void property="explosive">
+     <boolean>false</boolean>
+    </void>
+    <void property="flammable">
+     <boolean>true</boolean>
+    </void>
+    <void property="position">
+     <int>1</int>
+    </void>
+    <void property="properties">
+     <string>properties</string>
+    </void>
+    <void property="radioactive">
+     <boolean>true</boolean>
+    </void>
+    <void property="size">
+     <int>11</int>
+    </void>
+    <void property="toxic">
+     <boolean>false</boolean>
+    </void>
+    <void property="type">
+     <string>type</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="backend.serialization.SaveObject">
+    <void property="customer">
+     <string>customer2</string>
+    </void>
+    <void property="explosive">
+     <boolean>false</boolean>
+    </void>
+    <void property="flammable">
+     <boolean>true</boolean>
+    </void>
+    <void property="position">
+     <int>2</int>
+    </void>
+    <void property="properties">
+     <string>properties</string>
+    </void>
+    <void property="radioactive">
+     <boolean>true</boolean>
+    </void>
+    <void property="size">
+     <int>12</int>
+    </void>
+    <void property="toxic">
+     <boolean>false</boolean>
+    </void>
+    <void property="type">
+     <string>type1</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="backend.serialization.SaveObject">
+    <void property="customer">
+     <string>customer3</string>
+    </void>
+    <void property="explosive">
+     <boolean>false</boolean>
+    </void>
+    <void property="flammable">
+     <boolean>true</boolean>
+    </void>
+    <void property="position">
+     <int>3</int>
+    </void>
+    <void property="properties">
+     <string>properties</string>
+    </void>
+    <void property="radioactive">
+     <boolean>true</boolean>
+    </void>
+    <void property="size">
+     <int>13</int>
+    </void>
+    <void property="toxic">
+     <boolean>false</boolean>
+    </void>
+    <void property="type">
+     <string>type2</string>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>
