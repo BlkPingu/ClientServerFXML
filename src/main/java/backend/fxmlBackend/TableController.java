@@ -273,7 +273,15 @@ public class TableController implements Initializable {
 
                 System.out.println(saveWith.getText() +" loading...");
 
-                JOS.load().forEach(saveObject -> sendObject(client, saveObject));
+                JOS.load().forEach(saveObject -> {
+
+                    try {
+                        addSingleServerData(saveObject);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                });
 
                 System.out.println(tableData);
 
@@ -281,7 +289,13 @@ public class TableController implements Initializable {
             case "JBP":
                 System.out.println(saveWith.getText() +" loading...");
 
-                JBP.load().forEach(saveObject -> sendObject(client, saveObject));
+                JBP.load().forEach(saveObject -> {
+                    try {
+                        addSingleServerData(saveObject);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
 
                 System.out.println(tableData);
 
