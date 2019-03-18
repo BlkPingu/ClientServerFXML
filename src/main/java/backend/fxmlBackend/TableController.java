@@ -374,10 +374,10 @@ public class TableController implements Initializable {
     }
 
     private void bindSaveOpen(){
-        save.disableProperty().bind(Bindings.equal(save.textProperty(), "SaveAs"));
-        open.disableProperty().bind(Bindings.equal(save.textProperty(), "SaveAs"));
+        BooleanBinding booleanBind = saveWith.textProperty().isEqualTo("SaveAs");
+        open.disableProperty().bind(booleanBind);
+        save.disableProperty().bind(booleanBind);
     }
-
 
     /**
      * Type

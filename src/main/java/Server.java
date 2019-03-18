@@ -3,6 +3,7 @@ import java.io.*;
 import java.net.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import backend.fxmlBackend.FXMLAdministration;
 import backend.serialization.SaveObject;
 import backend.fxmlBackend.FXMLWarehouse;
 
@@ -18,19 +19,7 @@ public class Server implements Runnable {
     }
 
 
-    private byte[] toBytes(CopyOnWriteArrayList<SaveObject> obj) throws IOException {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        ObjectOutputStream os = new ObjectOutputStream(out);
-        os.writeObject(obj);
-        return out.toByteArray();
-    }
 
-    private SaveObject bytes2SaveObject (byte[] bytes) throws IOException, ClassNotFoundException{
-        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-        ObjectInput in = new ObjectInputStream(bis);
-
-        return (SaveObject) in.readObject();
-    }
 
 
 
@@ -49,18 +38,18 @@ public class Server implements Runnable {
             switch (command) {
                 case 'A':
                     // add
-                    SaveObject so = bytes2SaveObject(in.readAllBytes());
+                    SaveObject so = FXMLAdministration.bytes2SaveObject(in.readAllBytes());
                     warehouse.getTableObjects().add(so);
                     System.out.println("Added new Object: " + so + " | List is now of size: " +  warehouse.getTableObjects().size());
                     break;
                 case 'B':
                     //get server data
-                    out.write(toBytes(warehouse.getTableObjects()));
+                    out.write(FXMLAdministration.toBytes(warehouse.getTableObjects()));
                     System.out.println("Data List sent. Size: " + warehouse.getTableObjects().size());
                     break;
                 case 'C':
                     //delete
-                    SaveObject deleted = bytes2SaveObject(in.readAllBytes());
+                    SaveObject deleted = FXMLAdministration.bytes2SaveObject(in.readAllBytes());
                     for(SaveObject m : warehouse.getTableObjects()){
                         System.out.println(warehouse.getTableObjects().indexOf(m) + " - "+ m.getCustomer() + " / " + m.getPosition());
 
