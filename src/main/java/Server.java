@@ -1,7 +1,6 @@
 
 import java.io.*;
 import java.net.*;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import backend.fxmlBackend.FXMLAdministration;
 import backend.serialization.SaveObject;
@@ -39,30 +38,32 @@ public class Server implements Runnable {
                 case 'A':
                     // add
                     SaveObject so = FXMLAdministration.bytes2SaveObject(in.readAllBytes());
-                    warehouse.getTableObjects().add(so);
-                    System.out.println("Added new Object: " + so + " | List is now of size: " +  warehouse.getTableObjects().size());
+                    warehouse.getServerObjectsList().add(so);
+                    System.out.println("Added new Object: " + so + " | List is now of size: " +  warehouse.getServerObjectsList().size());
                     break;
                 case 'B':
                     //get server data
-                    out.write(FXMLAdministration.toBytes(warehouse.getTableObjects()));
-                    System.out.println("Data List sent. Size: " + warehouse.getTableObjects().size());
+                    out.write(FXMLAdministration.toBytes(warehouse.getServerObjectsList()));
+                    System.out.println("Data List sent. Size: " + warehouse.getServerObjectsList().size());
                     break;
                 case 'C':
                     //delete
                     SaveObject deleted = FXMLAdministration.bytes2SaveObject(in.readAllBytes());
-                    for(SaveObject m : warehouse.getTableObjects()){
-                        System.out.println(warehouse.getTableObjects().indexOf(m) + " - "+ m.getCustomer() + " / " + m.getPosition());
+                    for(SaveObject m : warehouse.getServerObjectsList()){
+                        System.out.println(warehouse.getServerObjectsList().indexOf(m) + " - "+ m.getCustomer() + " / " + m.getPosition());
 
 
                         if(m.getCustomer().equals(deleted.getCustomer()) && (m.getPosition().equals(deleted.getPosition()))){
-                            System.out.println(warehouse.getTableObjects().contains(m));
+                            System.out.println(warehouse.getServerObjectsList().contains(m));
                             System.out.println(m);
-                            warehouse.getTableObjects().remove(m);
-                            System.out.println(warehouse.getTableObjects().contains(m));
+                            warehouse.getServerObjectsList().remove(m);
+                            System.out.println(warehouse.getServerObjectsList().contains(m));
                         }
                     }
                     //System.out.println("Deleted the Object with Customer Name: " + deleted.getCustomer() + " | Pos:" + deleted.getPosition());
-
+                    break;
+                case 'D':
+                    warehouse.getServerObjectsList().clear();
                     break;
                 default:
                     System.out.println("ERROR! Something weird happened!");

@@ -6,7 +6,7 @@ import backend.serialization.SaveObject;
 
 public class FXMLWarehouse {
 
-    private CopyOnWriteArrayList<SaveObject> tableObjects = new CopyOnWriteArrayList<>(
+    private CopyOnWriteArrayList<SaveObject> serverObjectsList = new CopyOnWriteArrayList<>(
                 List.of(
                 new SaveObject("Liquid", "Dave", 5, 10, true, true, false, true, "P--"),
                 new SaveObject("Boxed", "Frank", 8, 5, false, true, false, true, "--F"),
@@ -16,8 +16,8 @@ public class FXMLWarehouse {
             );
 
 
-    public CopyOnWriteArrayList<SaveObject> getTableObjects() {
-        return tableObjects;
+    public CopyOnWriteArrayList<SaveObject> getServerObjectsList() {
+        return serverObjectsList;
     }
 
 

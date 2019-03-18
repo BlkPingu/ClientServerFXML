@@ -41,9 +41,9 @@ public class JBP {
         return sol;
     }
 
-    /*
-    public static void main(String[] args) throws IOException {
 
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+/*
         JBP jbp = new JBP();
         ArrayList<SaveObject> sol = new ArrayList<>();
 
@@ -57,9 +57,10 @@ public class JBP {
 
 
         jbp.save(sol);
-
-        System.out.println(sol.toString());
-        System.out.println(jbp.load().toString());
+        */
+        //System.out.println(sol.toString());
+        System.out.println(JBP.load().toString());
+        System.out.println(JOS.load().toString());
 
         //----
 
@@ -81,10 +82,10 @@ public class JBP {
 
         System.out.println(read);
 
-
+    */
     }
 
-   */
+
 }
 
 

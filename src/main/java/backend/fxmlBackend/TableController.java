@@ -71,27 +71,29 @@ public class TableController implements Initializable {
     final CopyOnWriteArrayList<SaveObject> saveObjects = new CopyOnWriteArrayList<>();
 
     //Table Object ArrayList to Save Object ArrayList
-    ArrayList<SaveObject> T2S(){
+    private ArrayList<SaveObject> T2S(){
         ArrayList<SaveObject> saveObjectArrayList = new ArrayList<>();
         for (TableObject to : tableData)
-            saveObjectArrayList.add(new SaveObject(
-                    to.getType(), to.getCustomer(), to.getPosition(), to.getSize(), to.isRadioactive(), to.isFlammable(), to.isToxic(), to.isExplosive(), to.getProperties())
-            );
+            saveObjectArrayList.add(tableObject2SaveObject(to));
         return saveObjectArrayList;
     }
 
     //Save Object ArrayList to Table Object ArrayList
-    void S2T(ArrayList<SaveObject> saveObjects){
+    private void S2T(ArrayList<SaveObject> saveObjects){
         for (SaveObject so: saveObjects) {
-            tableData.add(new TableObject(so.getType(), so.getCustomer(), so.getPosition(),
-                    so.getSize(), so.getRadioactive(), so.getFlammable(), so.getToxic(), so.getExplosive(), so.getProperties())
-            );
+            tableData.add(SaveObject2TableObject(so));
         }
     }
 
 
-    static SaveObject tableObject2SaveObject(TableObject to){
-        return new SaveObject(to.getType(), to.getCustomer(), to.getPosition(), to.getSize(), to.isRadioactive(), to.isFlammable(), to.isToxic(), to.isExplosive(), to.getProperties());
+    private static SaveObject tableObject2SaveObject(TableObject to){
+        return new SaveObject(to.getType(), to.getCustomer(), to.getPosition(),
+                to.getSize(), to.isRadioactive(), to.isFlammable(), to.isToxic(), to.isExplosive(), to.getProperties());
+    }
+    private static TableObject SaveObject2TableObject(SaveObject so){
+        return new TableObject(so.getType(), so.getCustomer(), so.getPosition(),
+                so.getSize(), so.getRadioactive(), so.getFlammable(), so.getToxic(), so.getExplosive(), so.getProperties());
+
     }
 
 
@@ -157,7 +159,7 @@ public class TableController implements Initializable {
 
 
 
-    public void addData(SaveObject saveObject) throws IOException {
+    public void addSingleServerData(SaveObject saveObject) throws IOException {
         Socket client = new Socket("localhost", 1337);
         sendCode(client,'A');
         sendObject(client,saveObject);
@@ -165,7 +167,7 @@ public class TableController implements Initializable {
         populateTable();
     }
 
-    public void getServerData() throws IOException {
+    public void getAllServerData() throws IOException {
         Socket client = new Socket("localhost", 1337);
         sendCode(client,'B');
         populateClientList(toObject(new DataInputStream(client.getInputStream()).readAllBytes()));
@@ -173,7 +175,7 @@ public class TableController implements Initializable {
 
     }
 
-    public void deleteData(SaveObject so) throws IOException {
+    public void deleteSingleServerData(SaveObject so) throws IOException {
         Socket client = new Socket("localhost", 1337);
         sendCode(client,'C');
         sendObject(client,so);
@@ -181,6 +183,12 @@ public class TableController implements Initializable {
         populateTable();
     }
 
+    public void deleteAllServerData() throws IOException {
+        Socket client = new Socket("localhost", 1337);
+        sendCode(client,'D');
+        client.close();
+        populateTable();
+    }
 
 
 
@@ -189,7 +197,7 @@ public class TableController implements Initializable {
         int pos = Integer.parseInt(position.getText());
         int siz = Integer.parseInt(size.getText());
         SaveObject obj = new SaveObject(type.getText(), customerName.getText(), pos, siz, radioactive.isSelected(), flammable.isSelected(), toxic.isSelected(), explosive.isSelected(), pressurizedArmed() + solidArmed() + fragileArmed());
-        addData(obj);
+        addSingleServerData(obj);
 
     }
 
@@ -205,7 +213,7 @@ public class TableController implements Initializable {
         propertiesCol.setCellValueFactory(new PropertyValueFactory<TableObject, String>("Properties"));
 
         try {
-            getServerData();
+            getAllServerData();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -219,7 +227,7 @@ public class TableController implements Initializable {
 
         for (SaveObject so: tol){
             saveObjects.add(so);
-            tableData.add(new TableObject(so.getType(), so.getCustomer(), so.getPosition(), so.getSize(), so.getRadioactive(), so.getFlammable(), so.getToxic(), so.getExplosive(), so.getProperties()));
+            tableData.add(SaveObject2TableObject(so));
         }
     }
 
@@ -244,6 +252,8 @@ public class TableController implements Initializable {
             case "JOS":
                 JOS.save(T2S());
                 break;
+            default:
+                System.out.println("Something went wrong!");
         }
         System.out.println("all saved");
 
@@ -253,18 +263,37 @@ public class TableController implements Initializable {
 
     public void openItem(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
         tableData.clear();
+        System.out.println(tableData);
+        deleteAllServerData();
+        Socket client = new Socket("localhost", 1337);
+
 
         switch(saveWith.getText()){
             case "JOS":
-                S2T(JOS.load());
+
+                System.out.println(saveWith.getText() +" loading...");
+
+                JOS.load().forEach(saveObject -> sendObject(client, saveObject));
+
+                System.out.println(tableData);
+
                 break;
             case "JBP":
-                S2T(JBP.load());
+                System.out.println(saveWith.getText() +" loading...");
+
+                JBP.load().forEach(saveObject -> sendObject(client, saveObject));
+
+                System.out.println(tableData);
+
                 break;
             default:
-                System.out.println("Unable to save");
+                System.out.println("Unable to load");
+                break;
         }
+
         populateTable();
+
+
     }
 
 
@@ -299,7 +328,7 @@ public class TableController implements Initializable {
         System.out.println("Print Customer Name of Deleted: " + so.getCustomer());
         cargoTable.getItems().removeAll(cargoTable.getSelectionModel().getSelectedItem());
         try {
-            deleteData(tableObject2SaveObject(so));
+            deleteSingleServerData(tableObject2SaveObject(so));
         } catch (IOException e) {
             e.printStackTrace();
         }
