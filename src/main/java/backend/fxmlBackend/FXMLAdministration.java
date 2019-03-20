@@ -125,6 +125,8 @@ public class FXMLAdministration {
     void deleteAllServerData() throws IOException {
         Socket client = new Socket("localhost", 1337);
         sendCode(client,'D');
+        tableData.clear();
+        saveObjects.clear();
         client.close();
     }
 

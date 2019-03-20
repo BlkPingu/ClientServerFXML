@@ -140,8 +140,6 @@ public class TableController implements Initializable {
     }
 
     public void openItem(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
-        fxa.tableData.clear();
-        System.out.println(fxa.tableData);
         fxa.deleteAllServerData();
         populateTable();
 
@@ -196,11 +194,15 @@ public class TableController implements Initializable {
     private void deleteRowFromTable(ActionEvent event){
         int index = cargoTable.getSelectionModel().getSelectedIndex();
         TableObject so = (TableObject) cargoTable.getItems().get(index);
-        System.out.println("Print Customer Name of Deleted: " + so.getCustomer());
         cargoTable.getItems().removeAll(cargoTable.getSelectionModel().getSelectedItem());
+        System.out.println("Customer Name of Deleted Locally:   " + so.getCustomer());
+
+
         try {
             fxa.deleteSingleServerData(FXMLAdministration.tableObject2SaveObject(so));
-            populateTable();
+            System.out.println("Customer Name of Deleted on Server: " + so.getCustomer());
+
+
 
         } catch (IOException e) {
             e.printStackTrace();
