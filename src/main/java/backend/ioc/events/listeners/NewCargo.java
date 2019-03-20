@@ -169,7 +169,7 @@ public class NewCargo implements InputEventListener {
 
     /**
      * @return
-     * creates new Customer with name for a cargo instance
+     * creates new Customer with name for a backend.storage.cargo instance
      */
     public Customer addCustomerToCargo(){
         System.out.print("New Owner Name: ");

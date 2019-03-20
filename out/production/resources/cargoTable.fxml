@@ -70,13 +70,13 @@
                 <RadioButton fx:id="toxic" layoutX="473.0" layoutY="72.0" mnemonicParsing="false" text="toxic" />
                 <RadioButton fx:id="explosive" layoutX="473.0" layoutY="98.0" mnemonicParsing="false" text="explosive" />
 
-                <Button fx:id="addBtn" layoutX="645.0" layoutY="30.0" mnemonicParsing="false" onAction="#addCargoToList" prefHeight="25.0" prefWidth="140.0" text="Add" />
+                <Button fx:id="addBtn" layoutX="645.0" layoutY="17.0" mnemonicParsing="false" onAction="#addCargoToList" prefHeight="25.0" prefWidth="140.0" text="Add" />
                <TextField fx:id="position" layoutX="136.0" layoutY="53.0" prefHeight="27.0" prefWidth="151.0" promptText="Position" />
                <TextField fx:id="size" layoutX="136.0" layoutY="87.0" prefHeight="27.0" prefWidth="151.0" promptText="Size" />
-               <Button fx:id="save" layoutX="645.0" layoutY="155.0" mnemonicParsing="false" onAction="#saveItem" prefHeight="25.0" prefWidth="86.0" text="save" />
-               <Button fx:id="deleteBtn" layoutX="645.0" layoutY="60.0" mnemonicParsing="false" onAction="#deleteRowFromTable" prefHeight="25.0" prefWidth="140.0" text="Delete Selection" />
-               <Button fx:id="open" layoutX="645.0" layoutY="125.0" mnemonicParsing="false" onAction="#openItem" prefHeight="25.0" prefWidth="86.0" text="open" />
-               <MenuButton fx:id="saveWith" layoutX="472.0" layoutY="125.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="109.0" text="SaveAs">
+               <Button fx:id="save" layoutX="645.0" layoutY="107.0" mnemonicParsing="false" onAction="#saveItem" prefHeight="27.0" prefWidth="141.0" text="save" />
+               <Button fx:id="deleteBtn" layoutX="645.0" layoutY="48.0" mnemonicParsing="false" onAction="#deleteRowFromTable" prefHeight="25.0" prefWidth="140.0" text="Delete Selection" />
+               <Button fx:id="open" layoutX="645.0" layoutY="139.0" mnemonicParsing="false" onAction="#openItem" prefHeight="27.0" prefWidth="142.0" text="open" />
+               <MenuButton fx:id="saveWith" layoutX="472.0" layoutY="139.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="109.0" text="SaveAs">
                   <items>
                      <MenuItem fx:id="jos" mnemonicParsing="false" onAction="#josSelected" text="JOS" />
                      <MenuItem fx:id="jbp" mnemonicParsing="false" onAction="#jbpSelected" text="JBP" />

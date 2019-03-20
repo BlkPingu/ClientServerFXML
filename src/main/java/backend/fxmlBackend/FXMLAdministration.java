@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 
 import java.io.*;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -130,7 +129,7 @@ public class FXMLAdministration {
         client.close();
     }
 
-    void populateClientList(CopyOnWriteArrayList<SaveObject> tol){
+    private void populateClientList(CopyOnWriteArrayList<SaveObject> tol){
         tableData.clear();
         saveObjects.clear();
         for (SaveObject so: tol){

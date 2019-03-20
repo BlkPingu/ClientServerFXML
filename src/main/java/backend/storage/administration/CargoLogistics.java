@@ -10,7 +10,7 @@ class CargoLogistics {
         this.position = position;
     }
 
-    public LocalDateTime getDate() {
+    LocalDateTime getDate() {
         return date;
     }
 

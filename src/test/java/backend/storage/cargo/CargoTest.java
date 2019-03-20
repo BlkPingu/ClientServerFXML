@@ -1,7 +1,6 @@
-package cargo;
+package backend.storage.cargo;
 
 import backend.enums.Hazard;
-import backend.storage.cargo.Cargo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import backend.storage.administration.Customer;

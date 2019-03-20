@@ -17,7 +17,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Administration{
 
-    HashMap<Integer, Customer> customerAdministration;
+    private HashMap<Integer, Customer> customerAdministration;
     public ArrayList<Warehouse> warehouses;
     public CopyOnWriteArrayList<Cargo> cargoList;
 
@@ -38,7 +38,9 @@ public class Administration{
         return INSTANCE;
     }
 
-    public synchronized boolean validateMinOneWarehouse() throws NoWarehouseException {
+
+
+    private synchronized boolean validateMinOneWarehouse() throws NoWarehouseException {
         if(warehouses.isEmpty()){
             throw new NoWarehouseException("FXMLWarehouse List Empty");
         }
@@ -46,7 +48,7 @@ public class Administration{
     }
 
 
-    public synchronized Cargo randomCargogenerator(){
+    private synchronized Cargo randomCargogenerator(){
         return new Cargo(generate(5,15), new Customer("Name"), Arrays.asList(Hazard.explosive, Hazard.flammable));
     }
 
@@ -63,8 +65,12 @@ public class Administration{
         return null;
     }
 
+    public HashMap<Integer, Customer> getCustomerAdministration() {
+        return customerAdministration;
+    }
 
-    void addCustomer(Customer customer) {
+
+    private void addCustomer(Customer customer) {
 
         if(customer != null){
             int key = 0;
@@ -87,7 +93,7 @@ public class Administration{
 
     }
 
-    void deleteCustomer(int id){
+    private void deleteCustomer(int id){
         if(customerAdministration.keySet().contains(id)){
             customerAdministration.remove(id);
         }else{
@@ -163,6 +169,7 @@ public class Administration{
             }
         }
     }
+
 
 
 }

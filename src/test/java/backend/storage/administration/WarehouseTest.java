@@ -1,4 +1,4 @@
-package administration;
+package backend.storage.administration;
 
 import backend.enums.Hazard;
 import backend.storage.administration.Customer;
@@ -49,7 +49,7 @@ class WarehouseTest {
         customerCargo1 = new Customer("C1");
         customerCargo2 = new Customer("C2");
 
-        //backend.storage.cargo with different all hazard options
+        //backend.storage.backend.storage.cargo with different all hazard options
         noHazardCargo = new LiquidCargo(5, customerCargo1, noHazard, true);
         oneHazardCargo = new LiquidCargo(5, customerCargo1, oneHazard, true);
         twoHazardCargo = new BoxedCargo(10, customerCargo2, twoHazard, true);
@@ -215,7 +215,7 @@ class WarehouseTest {
         warehouse.newCargo(mixedDryLiquid);
         warehouse.newCargo(mixedDryLiquid);
 
-        // 1 mixedDryLiquidBoxed backend.storage.cargo in backend.storage
+        // 1 mixedDryLiquidBoxed backend.storage.backend.storage.cargo in backend.storage
         warehouse.newCargo(mixedDryLiquidBoxed);
 
         // 2 liquid Cargo in backend.storage
@@ -244,7 +244,7 @@ class WarehouseTest {
 
     @Test
     void printCargoByType3() {
-        //No backend.storage.cargo in backend.storage to sort
+        //No backend.storage.backend.storage.cargo in backend.storage to sort
         assertTrue(warehouse.allCargo.isEmpty());
 
         //print
@@ -253,7 +253,7 @@ class WarehouseTest {
 
     @Test
     void printCargoByType4() {
-        //No backend.storage.cargo in backend.storage to sort
+        //No backend.storage.backend.storage.cargo in backend.storage to sort
         assertTrue(warehouse.allCargo.isEmpty());
 
         warehouse.newCargo(null);

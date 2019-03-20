@@ -47,14 +47,14 @@ public class Dialogs {
         System.out.println();
     }
     public static void unabletoStoreCargo(int dimentionsAllowed, int size){
-        System.out.format("Unable to store cargo. Allowed dimensions: %3d. Cargo dimensions: %3d", dimentionsAllowed, size);
+        System.out.format("Unable to store backend.storage.cargo. Allowed dimensions: %3d. Cargo dimensions: %3d", dimentionsAllowed, size);
         System.out.println();
     }
     public static void cargoContainsFollowingHazards(String hazards){
-        System.out.println("This cargo contains the following hazards: " + hazards);
+        System.out.println("This backend.storage.cargo contains the following hazards: " + hazards);
     }
     public static void noHazardsInCargo(){
-        System.out.println("This cargo does not contain hazards.");
+        System.out.println("This backend.storage.cargo does not contain hazards.");
     }
     public static void tryingToStoreCargoInWarehouse(String name, Cargo cargo, Warehouse warehouse){
         System.out.println(name + " trying to store " + cargo + " in " + warehouse);

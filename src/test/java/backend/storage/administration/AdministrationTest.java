@@ -1,4 +1,4 @@
-package administration;
+package backend.storage.administration;
 
 import backend.storage.administration.Administration;
 import backend.storage.administration.Customer;

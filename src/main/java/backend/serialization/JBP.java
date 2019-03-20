@@ -9,18 +9,12 @@ import java.beans.XMLEncoder;
 //https://www.youtube.com/watch?v=H-aTpt4NG-s
 
 public class JBP {
-    private static FileOutputStream fos;
-    private static XMLEncoder encoder;
-    private static FileInputStream fis;
-    private static XMLDecoder decoder;
 
     private final static String filename = "./saveObject.xml";
 
-
-
     public static void save(ArrayList<SaveObject> items) throws IOException{
-        fos = new FileOutputStream(new File(filename));
-        encoder = new XMLEncoder(fos);
+        FileOutputStream fos = new FileOutputStream(new File(filename));
+        XMLEncoder encoder = new XMLEncoder(fos);
 
         encoder.writeObject(items);
         encoder.close();
@@ -30,8 +24,8 @@ public class JBP {
 
     public static ArrayList<SaveObject> load() throws IOException{
 
-        fis = new FileInputStream(new File(filename));
-        decoder = new XMLDecoder(fis);
+        FileInputStream fis = new FileInputStream(new File(filename));
+        XMLDecoder decoder = new XMLDecoder(fis);
 
         ArrayList<SaveObject> sol = (ArrayList<SaveObject>) decoder.readObject();
 
@@ -40,51 +34,6 @@ public class JBP {
 
         return sol;
     }
-
-
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-/*
-        JBP jbp = new JBP();
-        ArrayList<SaveObject> sol = new ArrayList<>();
-
-        SaveObject s1 = new SaveObject("type", "customer1", 1, 11, true, true, false, false, "properties");
-        SaveObject s2 = new SaveObject("type1", "customer2", 2, 12, true, true, false, false, "properties");
-        SaveObject s3 = new SaveObject("type2", "customer3", 3, 13, true, true, false, false, "properties");
-
-        sol.add(s1);
-        sol.add(s2);
-        sol.add(s3);
-
-
-        jbp.save(sol);
-        */
-        //System.out.println(sol.toString());
-        System.out.println(JBP.load().toString());
-        System.out.println(JOS.load().toString());
-
-        //----
-
-        /*
-        SaveObject save = new SaveObject("type", "customer", 1, 5, true, true, false, false, "properties");
-        FileOutputStream fos = new FileOutputStream(new File("./saveObject.xml"));
-        XMLEncoder encoder = new XMLEncoder(fos);
-        encoder.writeObject(save);
-        encoder.close();
-        fos.close();
-
-
-        FileInputStream fis = new FileInputStream(new File("./saveObject.xml"));
-        XMLDecoder decoder = new XMLDecoder(fis);
-
-        SaveObject read = (SaveObject)decoder.readObject();
-        decoder.close();
-        fis.close();
-
-        System.out.println(read);
-
-    */
-    }
-
 
 }
 

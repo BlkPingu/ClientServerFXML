@@ -15,8 +15,8 @@ public class Warehouse{
     public ConcurrentHashMap<Integer, Cargo>  allCargo = new ConcurrentHashMap<>();
     public ConcurrentHashMap<Cargo, CargoLogistics> cargoUnitData = new ConcurrentHashMap<>();
 
-    public volatile int dimensionsAllowed;
-    public volatile int capacity;
+    private volatile int dimensionsAllowed;
+    volatile int capacity;
     public volatile int volumeStored = 0;
 
     public Warehouse(int dimensionsAllowed, int capacity) {
@@ -38,7 +38,7 @@ public class Warehouse{
         }
     }
 
-    public synchronized Cargo getOldestCargoInWarehouse(){
+    synchronized Cargo getOldestCargoInWarehouse(){
         LocalDateTime currentOldest = LocalDateTime.now();
         Cargo currentOldestCargo = null;
 
@@ -240,7 +240,7 @@ public class Warehouse{
                 if(customerName.equals(value.getOwner().getName()))
                     cargoOfOwner.add(value);
             }
-            System.out.format("The amount of cargo pieces for customer %10s is: %4d",customerName, cargoOfOwner.size());
+            System.out.format("The amount of backend.storage.cargo pieces for customer %10s is: %4d",customerName, cargoOfOwner.size());
             System.out.println();
         }else{
             try {
@@ -256,7 +256,7 @@ public class Warehouse{
         return (this.volumeStored + cargo.getSize()) > capacity;
     }
 
-    public static Integer getKeyByValueFromCargo(Map<Integer, Cargo> map, Cargo value) {
+    static Integer getKeyByValueFromCargo(Map<Integer, Cargo> map, Cargo value) {
         for (Map.Entry<Integer, Cargo> entry : map.entrySet()) {
             if (entry.getValue().equals(value)) {
                 return entry.getKey();
@@ -266,7 +266,7 @@ public class Warehouse{
     }
 
 
-    synchronized boolean newCargo(Cargo cargo){
+    public synchronized boolean newCargo(Cargo cargo){
         if(cargo != null){
             if(checkDimensions(cargo)){
                 if(hasNoSpace(cargo)){
