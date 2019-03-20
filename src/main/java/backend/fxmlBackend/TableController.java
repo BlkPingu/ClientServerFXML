@@ -66,139 +66,24 @@ public class TableController implements Initializable {
     @FXML private RadioButton toxic;
     @FXML private RadioButton explosive;
 
-    final ObservableList<TableObject> tableData = FXCollections.observableArrayList();
-
-    final CopyOnWriteArrayList<SaveObject> saveObjects = new CopyOnWriteArrayList<>();
-
-    //Table Object ArrayList to Save Object ArrayList
-    private ArrayList<SaveObject> T2S(){
-        ArrayList<SaveObject> saveObjectArrayList = new ArrayList<>();
-        for (TableObject to : tableData)
-            saveObjectArrayList.add(tableObject2SaveObject(to));
-        return saveObjectArrayList;
-    }
-
-    //Save Object ArrayList to Table Object ArrayList
-    private void S2T(ArrayList<SaveObject> saveObjects){
-        for (SaveObject so: saveObjects) {
-            tableData.add(SaveObject2TableObject(so));
-        }
-    }
+    FXMLAdministration fxa;
 
 
-    private static SaveObject tableObject2SaveObject(TableObject to){
-        return new SaveObject(to.getType(), to.getCustomer(), to.getPosition(),
-                to.getSize(), to.isRadioactive(), to.isFlammable(), to.isToxic(), to.isExplosive(), to.getProperties());
-    }
-    private static TableObject SaveObject2TableObject(SaveObject so){
-        return new TableObject(so.getType(), so.getCustomer(), so.getPosition(),
-                so.getSize(), so.getRadioactive(), so.getFlammable(), so.getToxic(), so.getExplosive(), so.getProperties());
-
-    }
-
-
-    public CopyOnWriteArrayList<SaveObject> toObject (byte[] bytes) throws IOException {
-        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-        ObjectInput in = null;
-        try {
-            in = new ObjectInputStream(bis);
-            Object o = in.readObject();
-            CopyOnWriteArrayList<SaveObject> sol = (CopyOnWriteArrayList<SaveObject>) o;
-            return sol;
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (in != null) {
-                    in.close();
-                }
-            } catch (IOException ex) {
-            }
-        }
-        return null;
-    }
-
-
-    public byte[] toBytes(SaveObject so) throws IOException{
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        ObjectOutput out = null;
-        try {
-            out = new ObjectOutputStream(bos);
-            out.writeObject(so);
-            out.flush();
-            byte[] bytes = bos.toByteArray();
-            return bytes;
-        }  finally {
-            try {
-                bos.close();
-            } catch (IOException ex) {
-            }
-        }
-    }
-
-    public void sendObject(Socket socket, SaveObject saveObject){
-        try {
-            new DataOutputStream(socket.getOutputStream()).write(toBytes(saveObject));
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void sendCode(Socket socket, char code){
-        try {
-            DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
-            dos.writeChar(code);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
+    //darstellungslogic ab hier -----------
 
 
 
-    public void addSingleServerData(SaveObject saveObject) throws IOException {
-        Socket client = new Socket("localhost", 1337);
-        sendCode(client,'A');
-        sendObject(client,saveObject);
-        client.close();
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+
+        fxa = new FXMLAdministration();
+
+        disableAll();
         populateTable();
-    }
-
-    public void getAllServerData() throws IOException {
-        Socket client = new Socket("localhost", 1337);
-        sendCode(client,'B');
-        populateClientList(toObject(new DataInputStream(client.getInputStream()).readAllBytes()));
-        client.close();
-
-    }
-
-    public void deleteSingleServerData(SaveObject so) throws IOException {
-        Socket client = new Socket("localhost", 1337);
-        sendCode(client,'C');
-        sendObject(client,so);
-        client.close();
-        populateTable();
-    }
-
-    public void deleteAllServerData() throws IOException {
-        Socket client = new Socket("localhost", 1337);
-        sendCode(client,'D');
-        client.close();
-        populateTable();
-    }
-
-
-
-
-    public void addCargoToList(ActionEvent actionEvent) throws IOException{
-        int pos = Integer.parseInt(position.getText());
-        int siz = Integer.parseInt(size.getText());
-        SaveObject obj = new SaveObject(type.getText(), customerName.getText(), pos, siz, radioactive.isSelected(), flammable.isSelected(), toxic.isSelected(), explosive.isSelected(), pressurizedArmed() + solidArmed() + fragileArmed());
-        addSingleServerData(obj);
-
+        bindAddButton();
+        bindDeleteButton();
+        bindSaveOpen();
     }
 
     public void populateTable(){
@@ -213,27 +98,21 @@ public class TableController implements Initializable {
         propertiesCol.setCellValueFactory(new PropertyValueFactory<TableObject, String>("Properties"));
 
         try {
-            getAllServerData();
+            fxa.getAllServerData();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        cargoTable.setItems(tableData);
+        cargoTable.setItems(fxa.tableData);
     }
 
-    public void populateClientList(CopyOnWriteArrayList<SaveObject> tol){
+    public void addCargoToList(ActionEvent actionEvent) throws IOException{
+        int pos = Integer.parseInt(position.getText());
+        int siz = Integer.parseInt(size.getText());
+        SaveObject obj = new SaveObject(type.getText(), customerName.getText(), pos, siz, radioactive.isSelected(), flammable.isSelected(), toxic.isSelected(), explosive.isSelected(), pressurizedArmed() + solidArmed() + fragileArmed());
+        fxa.addSingleServerData(obj);
+        populateTable();
 
-        tableData.clear();
-        saveObjects.clear();
-
-        for (SaveObject so: tol){
-            saveObjects.add(so);
-            tableData.add(SaveObject2TableObject(so));
-        }
     }
-
-
-    //darstellungslogic ab hier
-
 
 
     public void jbpSelected(ActionEvent actionEvent) {
@@ -247,25 +126,25 @@ public class TableController implements Initializable {
     public void saveItem(ActionEvent actionEvent) throws IOException {
         switch(saveWith.getText()){
             case "JBP":
-                JBP.save(T2S());
+                JBP.save(fxa.tableObjectList2SaveObjectList());
                 break;
             case "JOS":
-                JOS.save(T2S());
+                JOS.save(fxa.tableObjectList2SaveObjectList());
                 break;
             default:
                 System.out.println("Something went wrong!");
         }
+        System.out.println(fxa.tableData);
         System.out.println("all saved");
 
     }
 
-
-
     public void openItem(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
-        tableData.clear();
-        System.out.println(tableData);
-        deleteAllServerData();
-        Socket client = new Socket("localhost", 1337);
+        fxa.tableData.clear();
+        System.out.println(fxa.tableData);
+        fxa.deleteAllServerData();
+        populateTable();
+
 
 
         switch(saveWith.getText()){
@@ -276,14 +155,19 @@ public class TableController implements Initializable {
                 JOS.load().forEach(saveObject -> {
 
                     try {
-                        addSingleServerData(saveObject);
+                        fxa.addSingleServerData(saveObject);
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    populateTable();
+
+
+
 
                 });
 
-                System.out.println(tableData);
+                System.out.println(fxa.tableData);
 
                 break;
             case "JBP":
@@ -291,48 +175,21 @@ public class TableController implements Initializable {
 
                 JBP.load().forEach(saveObject -> {
                     try {
-                        addSingleServerData(saveObject);
+                        fxa.addSingleServerData(saveObject);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    populateTable();
                 });
 
-                System.out.println(tableData);
-
+                System.out.println(fxa.tableData);
                 break;
             default:
                 System.out.println("Unable to load");
                 break;
         }
-
-        populateTable();
-
-
-    }
-
-
-
-
-    /*
-    public void openItem(ActionEvent actionEvent) {
-        tableData.clear();
-        ArrayList<SaveObject> saveObjects = JOS.load("file.txt");
-        for (SaveObject so: saveObjects) {
-            tableData.add(new TableObject(so.getType(), so.getCustomer(), so.getPosition(),
-                    so.getSize(), so.getRadioactive(), so.getFlammable(), so.getToxic(), so.getExplosive(), so.getProperties()));
-        }
         populateTable();
     }
-
-    public void saveItem(ActionEvent actionEvent) {
-        ArrayList<SaveObject> saveObjectArrayList = new ArrayList<>();
-        for (TableObject to : tableData)
-            saveObjectArrayList.add(new SaveObject(to.getType(),
-                    to.getCustomer(), to.getPosition(), to.getSize(), to.isRadioactive(), to.isFlammable(), to.isToxic(), to.isExplosive(), to.getProperties()));
-        JOS.save("file.txt", saveObjectArrayList);
-        System.out.println("all saved");
-    }
-    */
 
 
     @FXML
@@ -342,7 +199,9 @@ public class TableController implements Initializable {
         System.out.println("Print Customer Name of Deleted: " + so.getCustomer());
         cargoTable.getItems().removeAll(cargoTable.getSelectionModel().getSelectedItem());
         try {
-            deleteSingleServerData(tableObject2SaveObject(so));
+            fxa.deleteSingleServerData(FXMLAdministration.tableObject2SaveObject(so));
+            populateTable();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -350,14 +209,7 @@ public class TableController implements Initializable {
     }
 
 
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        disableAll();
-        populateTable();
-        bindAddButton();
-        bindDeleteButton();
-        bindSaveOpen();
-    }
+
 
     private void enableCommonFields(){
         customerName.setDisable(false);
