@@ -35,4 +35,8 @@ public class BoxedCargo extends Cargo implements backend.storage.cargo.interface
     public Collection<Hazard> getHazards() {
         return this.hazards;
     }
+
+    public void setFragile(boolean fragile) {
+        this.fragile = fragile;
+    }
 }

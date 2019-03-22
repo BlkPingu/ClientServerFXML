@@ -6,12 +6,9 @@ import backend.exceptions.NotInCollectionException;
 import backend.exceptions.NullValueException;
 import backend.storage.cargo.Cargo;
 import userinterface.dialogs.Dialogs;
-
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Scanner;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
@@ -22,7 +19,6 @@ public class Administration{
     public CopyOnWriteArrayList<Cargo> cargoList;
 
     private static Administration INSTANCE;
-
 
     public Administration() {
         customerAdministration = new HashMap<>();
@@ -42,15 +38,17 @@ public class Administration{
 
     private synchronized boolean validateMinOneWarehouse() throws NoWarehouseException {
         if(warehouses.isEmpty()){
-            throw new NoWarehouseException("FXMLWarehouse List Empty");
+            throw new NoWarehouseException("Warehouse List Empty");
         }
         else return true;
     }
 
 
+
     private synchronized Cargo randomCargogenerator(){
         return new Cargo(generate(5,15), new Customer("Name"), Arrays.asList(Hazard.explosive, Hazard.flammable));
     }
+
 
     private static int generate(int min,int max)
     {
@@ -65,7 +63,7 @@ public class Administration{
         return null;
     }
 
-    public HashMap<Integer, Customer> getCustomerAdministration() {
+    HashMap<Integer, Customer> getCustomerAdministration() {
         return customerAdministration;
     }
 
@@ -110,67 +108,5 @@ public class Administration{
             Dialogs.warehouseCapacityLevel(warehouse.volumeStored, warehouse.capacity);
         }
     }
-
-
-
-    public void store() throws InterruptedException {
-        Warehouse warehouse = warehouses.get(0);
-        String name = "Storage Thread";
-
-
-        synchronized (this) {
-            while (true) {
-                Cargo newCargo = randomCargogenerator();
-                Dialogs.tryingToStoreCargoInWarehouse("Storage Thread", newCargo, warehouse);
-                if (!warehouse.hasNoSpace(newCargo) && warehouse.newCargo(newCargo)) {
-                    Dialogs.successfullyStoredCargoInWarehouse(name, newCargo, warehouse);
-                } else {
-                    System.out.println("Notifying Move");
-                    notify();
-                    wait();
-                }
-            }
-
-        }
-    }
-
-    public void move() throws InterruptedException {
-        String name = "Move Thread";
-        Thread.sleep(500);
-        Scanner scanner = new Scanner(System.in);
-        boolean done = false;
-
-        while(!done){
-            synchronized (this) {
-                Warehouse mainWarehouse = warehouses.get(0);
-                Cargo oldestCargo = mainWarehouse.getOldestCargoInWarehouse();
-
-
-                Dialogs.tryingToStoreCargoInWarehouse(name, oldestCargo, mainWarehouse);
-
-                Warehouse warehouseWithSpace = findWarehouseWithSpace(oldestCargo);
-
-                printAllWarehouseVolumeStored();
-                System.out.println("Move Cargo " + oldestCargo + " to " + warehouseWithSpace + "? [ENTER]");
-
-                //deactivate to run without enter
-                scanner.nextLine();
-
-                if (warehouseWithSpace != null) {
-                    warehouseWithSpace.newCargo(oldestCargo);
-                    mainWarehouse.deleteCargo(Warehouse.getKeyByValueFromCargo(mainWarehouse.allCargo, oldestCargo));
-                    notify();
-                    wait();
-                }else{
-                    System.out.println("DONE");
-                    done = true;
-                }
-
-            }
-        }
-    }
-
-
-
 }
 

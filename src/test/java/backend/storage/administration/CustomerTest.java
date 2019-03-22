@@ -14,8 +14,6 @@ class CustomerTest {
     @BeforeEach
     void setUp() {
         customer = new Customer("TheName");
-        customer = new Customer(null);
-
     }
 
     @Test

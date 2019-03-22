@@ -12,7 +12,8 @@ public class Console {
     public static void main(String[] args) {
 
         Warehouse warehouse = new Warehouse(10, 100);
-        Administration administration = new Administration();
+        Administration administration = Administration.getInstance();
+        administration.warehouses.add(warehouse);
 
         Dialogs.options();
 

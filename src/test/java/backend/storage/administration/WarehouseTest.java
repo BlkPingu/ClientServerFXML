@@ -1,8 +1,6 @@
 package backend.storage.administration;
 
 import backend.enums.Hazard;
-import backend.storage.administration.Customer;
-import backend.storage.administration.Warehouse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import backend.storage.cargo.*;
@@ -16,15 +14,8 @@ class WarehouseTest {
     private LiquidCargo liquidCargo;
     private BoxedCargo boxedCargo;
     private Warehouse warehouse;
-    private Customer customerCargo1;
-    private Customer customerCargo2;
     private MixedDryLiquid mixedDryLiquid;
     private MixedDryLiquidBoxed mixedDryLiquidBoxed;
-    private Collection<Hazard> noHazard;
-    private Collection<Hazard> oneHazard;
-    private Collection<Hazard> twoHazard;
-    private Collection<Hazard> threeHazard;
-    private Collection<Hazard> allHazard;
     private LiquidCargo noHazardCargo;
     private LiquidCargo oneHazardCargo;
     private BoxedCargo twoHazardCargo;
@@ -39,15 +30,15 @@ class WarehouseTest {
         warehouse = new Warehouse(10, 5000);
 
         //4 Hazard Collections required with and without entries
-        noHazard = Collections.emptyList();
-        oneHazard = Collections.singletonList(Hazard.explosive);
-        twoHazard = Arrays.asList(Hazard.explosive, Hazard.flammable);
-        threeHazard = Arrays.asList(Hazard.explosive, Hazard.flammable, Hazard.radioactive);
-        allHazard = Arrays.asList(Hazard.explosive, Hazard.flammable, Hazard.radioactive, Hazard.toxic);
+        Collection<Hazard> noHazard = Collections.emptyList();
+        Collection<Hazard> oneHazard = Collections.singletonList(Hazard.explosive);
+        Collection<Hazard> twoHazard = Arrays.asList(Hazard.explosive, Hazard.flammable);
+        Collection<Hazard> threeHazard = Arrays.asList(Hazard.explosive, Hazard.flammable, Hazard.radioactive);
+        Collection<Hazard> allHazard = Arrays.asList(Hazard.explosive, Hazard.flammable, Hazard.radioactive, Hazard.toxic);
 
         //Minimum of 2 Customers required to check for existing customers
-        customerCargo1 = new Customer("C1");
-        customerCargo2 = new Customer("C2");
+        Customer customerCargo1 = new Customer("C1");
+        Customer customerCargo2 = new Customer("C2");
 
         //backend.storage.backend.storage.cargo with different all hazard options
         noHazardCargo = new LiquidCargo(5, customerCargo1, noHazard, true);
@@ -65,7 +56,7 @@ class WarehouseTest {
 
 
     @Test
-    void newCargo1(){
+    void newCargo(){
         warehouse.newCargo(liquidCargo);
 
         assertEquals(1, warehouse.allCargo.size());
@@ -99,7 +90,7 @@ class WarehouseTest {
 
 
     @Test
-    void deleteCargo1() {
+    void deleteCargo() {
         warehouse.newCargo(liquidCargo);
         System.out.println(warehouse.allCargo);
 
@@ -144,7 +135,6 @@ class WarehouseTest {
 
 
         warehouse.deleteCargo(null);
-
         assertTrue(warehouse.allCargo.isEmpty());
         assertTrue(warehouse.cargoUnitData.isEmpty());
         assertEquals(0, warehouse.volumeStored);
@@ -163,7 +153,7 @@ class WarehouseTest {
     }
 
     @Test
-    void getCustomersCargoAmount1() {
+    void getCustomersCargoAmount() {
         warehouse.newCargo(liquidCargo); //owned by Customer C1
         warehouse.newCargo(mixedDryLiquidBoxed); //owned by Customer C2
         assertTrue(warehouse.allCargo.containsValue(liquidCargo));
@@ -210,7 +200,7 @@ class WarehouseTest {
     }
 
     @Test
-    void printCargoByType1() {
+    void printCargoByType() {
         // 2 mixedDryLiquid Cargo in backend.storage
         warehouse.newCargo(mixedDryLiquid);
         warehouse.newCargo(mixedDryLiquid);
@@ -263,7 +253,7 @@ class WarehouseTest {
     }
 
     @Test
-    public void getHazardsInStorage1() {
+    public void getHazardsInStorage() {
 
         //No Hazards
         warehouse.newCargo(noHazardCargo);
@@ -318,7 +308,7 @@ class WarehouseTest {
     }
 
     @Test
-    public void getHazardsNotInStorage1() {
+    public void getHazardsNotInStorage() {
 
         //No Hazards
         warehouse.newCargo(noHazardCargo);
@@ -352,16 +342,12 @@ class WarehouseTest {
 
     @Test
     public void getHazardsNotInStorage3() {
-
-
         warehouse.getHazardsNotInStorage();
     }
 
     @Test
     public void getHazardsNotInStorage4() {
-
         assertTrue(warehouse.allCargo.isEmpty());
-
         //Has No Hazards
         warehouse.newCargo(null);
 
@@ -370,7 +356,6 @@ class WarehouseTest {
 
     @Test
     void storeCargoFromAdministration() {
-
     }
 
     @Test
@@ -387,5 +372,9 @@ class WarehouseTest {
 
     @Test
     void getKeyByValueFromCargo() {
+    }
+
+    @Test
+    void getKeyByValueForServer() {
     }
 }

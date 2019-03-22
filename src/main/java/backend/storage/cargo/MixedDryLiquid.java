@@ -40,4 +40,12 @@ public class MixedDryLiquid extends Cargo implements backend.storage.cargo.inter
     public Collection<Hazard> getHazards() {
         return this.hazards;
     }
+
+    public void setSolid(boolean solid) {
+        this.solid = solid;
+    }
+
+    public void setPressurized(boolean pressurized) {
+        this.pressurized = pressurized;
+    }
 }

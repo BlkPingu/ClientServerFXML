@@ -1,20 +1,24 @@
 package backend.fxmlBackend;
 
 import backend.serialization.SaveObject;
+import backend.storage.cargo.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.shape.Box;
 
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
 
-public class FXMLAdministration {
+public class ServerUtility {
 
     final ObservableList<TableObject> tableData = FXCollections.observableArrayList();
-    final CopyOnWriteArrayList<SaveObject> saveObjects = new CopyOnWriteArrayList<>();
+    //final CopyOnWriteArrayList<SaveObject> saveObjects = new CopyOnWriteArrayList<>();
 
-    public static byte[] toBytes(CopyOnWriteArrayList<SaveObject> obj) throws IOException {
+    public static byte[] toBytes(ArrayList<SaveObject> obj) throws IOException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         ObjectOutputStream os = new ObjectOutputStream(out);
         os.writeObject(obj);
@@ -47,13 +51,13 @@ public class FXMLAdministration {
     }
 
 
-    private CopyOnWriteArrayList<SaveObject> toObject(byte[] bytes) throws IOException {
+    private ArrayList<SaveObject> toObject(byte[] bytes) throws IOException {
         ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
         ObjectInput in = null;
         try {
             in = new ObjectInputStream(bis);
             Object o = in.readObject();
-            return (CopyOnWriteArrayList<SaveObject>) o;
+            return (ArrayList<SaveObject>) o;
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -87,10 +91,10 @@ public class FXMLAdministration {
         }
     }
 
-    private void sendCode(Socket socket, char code){
+    private void sendCode(Socket socket, int code){
         try {
             DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
-            dos.writeChar(code);
+            dos.writeInt(code);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -101,14 +105,14 @@ public class FXMLAdministration {
 
     void addSingleServerData(SaveObject saveObject) throws IOException {
         Socket client = new Socket("localhost", 1337);
-        sendCode(client,'A');
+        sendCode(client,0x1);
         sendObject(client,saveObject);
         client.close();
     }
 
     void getAllServerData() throws IOException {
         Socket client = new Socket("localhost", 1337);
-        sendCode(client,'B');
+        sendCode(client,0x2);
         populateClientList(toObject(new DataInputStream(client.getInputStream()).readAllBytes()));
         client.close();
 
@@ -116,24 +120,24 @@ public class FXMLAdministration {
 
     void deleteSingleServerData(SaveObject so) throws IOException {
         Socket client = new Socket("localhost", 1337);
-        sendCode(client,'C');
+        sendCode(client,0x3);
         sendObject(client,so);
         client.close();
     }
 
     void deleteAllServerData() throws IOException {
         Socket client = new Socket("localhost", 1337);
-        sendCode(client,'D');
+        sendCode(client,0x4);
         tableData.clear();
-        saveObjects.clear();
+        //saveObjects.clear();
         client.close();
     }
 
-    private void populateClientList(CopyOnWriteArrayList<SaveObject> tol){
+    private void populateClientList(ArrayList<SaveObject> tol){
         tableData.clear();
-        saveObjects.clear();
+        //saveObjects.clear();
         for (SaveObject so: tol){
-            saveObjects.add(so);
+            //saveObjects.add(so);
             tableData.add(SaveObject2TableObject(so));
         }
     }

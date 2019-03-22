@@ -4,8 +4,6 @@ import backend.enums.Hazard;
 import backend.serialization.JBP;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,12 +17,7 @@ import backend.serialization.SaveObject;
 
 import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-
-import java.net.*;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public class TableController implements Initializable {
@@ -66,7 +59,7 @@ public class TableController implements Initializable {
     @FXML private RadioButton toxic;
     @FXML private RadioButton explosive;
 
-    FXMLAdministration fxa;
+    ServerUtility fxa;
 
 
     //darstellungslogic ab hier -----------
@@ -77,7 +70,7 @@ public class TableController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 
-        fxa = new FXMLAdministration();
+        fxa = new ServerUtility();
 
         disableAll();
         populateTable();
@@ -199,8 +192,8 @@ public class TableController implements Initializable {
 
 
         try {
-            fxa.deleteSingleServerData(FXMLAdministration.tableObject2SaveObject(so));
-            System.out.println("Customer Name of Deleted on Server: " + so.getCustomer());
+            fxa.deleteSingleServerData(ServerUtility.tableObject2SaveObject(so));
+            System.out.println("Customer Name of Deleted on MainServer: " + so.getCustomer());
 
 
 

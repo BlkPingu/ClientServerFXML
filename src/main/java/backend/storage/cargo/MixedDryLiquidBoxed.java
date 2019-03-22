@@ -48,4 +48,16 @@ public class MixedDryLiquidBoxed extends Cargo implements backend.storage.cargo.
     public Collection<Hazard> getHazards() {
         return this.hazards;
     }
+
+    public void setFragile(boolean fragile) {
+        this.fragile = fragile;
+    }
+
+    public void setSolid(boolean solid) {
+        this.solid = solid;
+    }
+
+    public void setPressurized(boolean pressurized) {
+        this.pressurized = pressurized;
+    }
 }

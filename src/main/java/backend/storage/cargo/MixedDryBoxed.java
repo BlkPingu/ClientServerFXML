@@ -40,4 +40,12 @@ public class MixedDryBoxed extends Cargo implements backend.storage.cargo.interf
     public Collection<Hazard> getHazards() {
         return this.hazards;
     }
+
+    public void setFragile(boolean fragile) {
+        this.fragile = fragile;
+    }
+
+    public void setSolid(boolean solid) {
+        this.solid = solid;
+    }
 }

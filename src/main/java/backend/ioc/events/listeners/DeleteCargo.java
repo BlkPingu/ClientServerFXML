@@ -8,12 +8,10 @@ import java.util.Scanner;
 
 public class DeleteCargo implements InputEventListener {
 
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
-    public void deleteCargo(Warehouse warehouse){
-        warehouse.allCargo.forEach((k,v) -> {
-            System.out.println("[" + k + "] " + v.toString());
-        });
+    private void deleteCargo(Warehouse warehouse){
+        warehouse.allCargo.forEach((k,v) -> System.out.println("[" + k + "] " + v.toString()));
         System.out.print("Which number?: ");
         try {
             int cargoNumber = scanner.nextInt();
@@ -25,12 +23,11 @@ public class DeleteCargo implements InputEventListener {
 
     @Override
     public void onInputEvent(Administration administration, InputEvent event) {
-        if (null != event.getText() && event.getText().equals("delete")){
+        if (event.getText().equals("delete")) {
 
             System.out.println("Input => '" + event.getText() + "'");
             deleteCargo(administration.warehouses.get(0));
             System.out.println("Cargo at Position deleted");
-
-        }else{new NullPointerException();}
+        }
     }
 }

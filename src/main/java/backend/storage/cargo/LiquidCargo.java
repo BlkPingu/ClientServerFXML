@@ -33,4 +33,8 @@ public class LiquidCargo extends Cargo implements backend.storage.cargo.interfac
     public Collection<Hazard> getHazards() {
         return this.hazards;
     }
+
+    public void setPressurized(boolean pressurized) {
+        this.pressurized = pressurized;
+    }
 }

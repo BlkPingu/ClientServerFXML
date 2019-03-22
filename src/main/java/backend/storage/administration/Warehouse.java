@@ -13,11 +13,11 @@ import java.util.stream.Collectors;
 public class Warehouse{
 
     public ConcurrentHashMap<Integer, Cargo>  allCargo = new ConcurrentHashMap<>();
-    public ConcurrentHashMap<Cargo, CargoLogistics> cargoUnitData = new ConcurrentHashMap<>();
+    ConcurrentHashMap<Cargo, CargoLogistics> cargoUnitData = new ConcurrentHashMap<>();
 
     private volatile int dimensionsAllowed;
     volatile int capacity;
-    public volatile int volumeStored = 0;
+    volatile int volumeStored = 0;
 
     public Warehouse(int dimensionsAllowed, int capacity) {
         this.dimensionsAllowed = dimensionsAllowed;
@@ -208,30 +208,31 @@ public class Warehouse{
 
 
     public synchronized void deleteCargo(Integer key){
-        if(!allCargo.containsKey(key)) {
-            try {
-                throw new NullPointerException("Key does not exist: " + key);
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            }
-        }
-        else {
-            if(key != null){
-                this.volumeStored -= allCargo.get(key).getSize();
-                cargoUnitData.remove(allCargo.get(key));
-                allCargo.remove(key);
-            }else{
+        if(key != null){
+            if(!allCargo.containsKey(key)) {
                 try {
-                    throw new NullValueException("Is null: " + key);
-                } catch (NullValueException e) {
+                    throw new NullPointerException();
+                } catch (NullPointerException e) {
+                    System.out.println("Key does not exist: " + key);
                     e.printStackTrace();
                 }
             }
+            this.volumeStored -= allCargo.get(key).getSize();
+            cargoUnitData.remove(allCargo.get(key));
+            allCargo.remove(key);
+        }else{
+            try {
+                throw new NullValueException("Is null: " + key);
+            } catch (NullValueException e) {
+                System.out.println("No Cargo deleted. Key was null.");
+                e.printStackTrace();
+            }
         }
-
     }
 
-    public synchronized void getCustomersCargoAmount(String customerName){
+
+
+    synchronized void getCustomersCargoAmount(String customerName){
         if(customerName != null){
             List<Cargo> cargoOfOwner = new ArrayList<>();
 
@@ -256,9 +257,20 @@ public class Warehouse{
         return (this.volumeStored + cargo.getSize()) > capacity;
     }
 
-    static Integer getKeyByValueFromCargo(Map<Integer, Cargo> map, Cargo value) {
+    public static Integer getKeyByValueFromCargo(Map<Integer, Cargo> map, Cargo value) {
         for (Map.Entry<Integer, Cargo> entry : map.entrySet()) {
             if (entry.getValue().equals(value)) {
+                return entry.getKey();
+            }
+        }
+        return null;
+    }
+
+    public static Integer getKeyByValueForServer(Map<Integer, Cargo> map, Cargo value){
+        for (Map.Entry<Integer, Cargo> entry : map.entrySet()) {
+            if (entry.getValue().getOwner().getName().equals(value.getOwner().getName())
+            && entry.getValue().getHazards().equals(value.getHazards())
+            && entry.getValue().getSize() == value.getSize()) {
                 return entry.getKey();
             }
         }
@@ -291,7 +303,7 @@ public class Warehouse{
         return false;
     }
 
-    public void printCargoByType() {
+    void printCargoByType() {
         Set<List<? extends Cargo>> sortedCargo = sortCargoByType();
         if(sortedCargo != null){
             sortedCargo.forEach(s -> {
@@ -314,7 +326,7 @@ public class Warehouse{
 
     }
 
-    public void getHazardsInStorage(){
+    void getHazardsInStorage(){
         Set<Hazard> hazards = getHazards();
         if(hazards != null){
             if(hazards.isEmpty()){
@@ -329,7 +341,7 @@ public class Warehouse{
         }
     }
 
-    public void getHazardsNotInStorage(){
+    void getHazardsNotInStorage(){
         Set<Hazard> hazards = getHazards();
         if(hazards != null){
             Set<Hazard> hazardsNotInStorge = new HashSet<>();

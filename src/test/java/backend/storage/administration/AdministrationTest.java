@@ -102,5 +102,7 @@ class AdministrationTest {
     void move() {
     }
 
-
+    @Test
+    void getCustomerAdministration1() {
+    }
 }

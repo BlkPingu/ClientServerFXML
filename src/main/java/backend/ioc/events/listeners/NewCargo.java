@@ -3,7 +3,6 @@ package backend.ioc.events.listeners;
 import backend.enums.Hazard;
 import backend.storage.administration.Administration;
 import backend.storage.administration.Customer;
-import backend.storage.administration.Warehouse;
 import backend.storage.cargo.*;
 import userinterface.dialogs.Dialogs;
 import backend.ioc.events.listeners.interfaces.InputEventListener;
@@ -15,11 +14,11 @@ import java.util.Set;
 
 public class NewCargo implements InputEventListener {
 
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
 
 
-    public Set<Hazard> enterHazards() {
+    private Set<Hazard> enterHazards() {
 
         Set<Hazard> hazards = new HashSet<>();
         boolean done = false;
@@ -63,12 +62,12 @@ public class NewCargo implements InputEventListener {
 
                 }
             }catch(InputMismatchException ime){
-
+                System.out.println("Input missmatch exception");
             }
         }
         return hazards;
     }
-    public int enterSize() throws InputMismatchException{
+    private int enterSize() throws InputMismatchException{
         int size = 0;
         boolean repeat = true;
         while(repeat)
@@ -85,11 +84,11 @@ public class NewCargo implements InputEventListener {
     }
 
 
-    public void newCargo(Warehouse warehouse, Administration administration) {
+    private void newCargo(Administration administration) {
         specificCargo(enterSize(), addCustomerToCargo(), enterHazards(), administration);
     }
 
-    public void specificCargo(int size, Customer owner, Set<Hazard> hazards, Administration administration){
+    private void specificCargo(int size, Customer owner, Set<Hazard> hazards, Administration administration){
         Dialogs.cargoType();
 
         System.out.print("Enter (0-6): ");
@@ -124,13 +123,7 @@ public class NewCargo implements InputEventListener {
         System.out.println("Cargo added to Cargo List");
     }
 
-
-    /**
-     * @return
-     * Set attribute is a helper method for setSolid, setFragile and setressurized.
-     * It takes user input y or Y to return boolean true and false on otherwise.
-     */
-    public Boolean setAttribute(){
+    private Boolean setAttribute(){
         String choice = scanner.next();
         if(choice.equals("y") || choice.equals("Y")){
             System.out.println("Set true.");
@@ -141,27 +134,15 @@ public class NewCargo implements InputEventListener {
         }
     }
 
-    /**
-     * @return
-     * returns setAttribute paired with specific console output to
-     */
-    public Boolean setSolid(){
+    private Boolean setSolid(){
         System.out.print("Cargo solid [y/Y = true // AnyKey == False]: ");
         return setAttribute();
     }
-    /**
-     * @return
-     * returns setAttribute paired with specific console output to
-     */
-    public Boolean setFragile(){
+    private Boolean setFragile(){
         System.out.println("Cargo fragile [y/Y = true // AnyKey == False]: ");
         return setAttribute();
     }
-    /**
-     * @return
-     * returns setAttribute paired with specific console output to
-     */
-    public Boolean setPressurized(){
+    private Boolean setPressurized(){
         System.out.println("Cargo pressurized [y/Y = true // AnyKey == False]: ");
         return setAttribute();
     }
@@ -171,24 +152,18 @@ public class NewCargo implements InputEventListener {
      * @return
      * creates new Customer with name for a backend.storage.cargo instance
      */
-    public Customer addCustomerToCargo(){
+    private Customer addCustomerToCargo(){
         System.out.print("New Owner Name: ");
         String name = scanner.next();
         System.out.println();
         return new Customer(name);
     }
 
-
-    /**
-     * @param warehouse
-     * @param event
-     * Executes newCargo() on Event "new" as userinput
-     */
     @Override
     public void onInputEvent(Administration administration, InputEvent event) {
         if (null != event.getText() && event.getText().equals("new")){
             System.out.println("Input => '" + event.getText() + "'");
-            newCargo(administration.warehouses.get(0), administration);
+            newCargo(administration);
         }else{new NullPointerException();}
     }
 }

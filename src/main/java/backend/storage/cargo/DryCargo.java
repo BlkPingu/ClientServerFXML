@@ -34,4 +34,8 @@ public class DryCargo extends Cargo implements backend.storage.cargo.interfaces.
     public Collection<Hazard> getHazards() {
         return this.hazards;
     }
+
+    public void setSolid(boolean solid) {
+        this.solid = solid;
+    }
 }
