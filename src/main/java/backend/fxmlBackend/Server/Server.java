@@ -8,13 +8,13 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server extends Thread {
-    private FXMLWarehouse warehouse;
+    FXMLWarehouse warehouse;
     ObjectInputStream fromClient;
     ObjectOutputStream toClient;
 
 
-    public Server(){
-        this.warehouse = new FXMLWarehouse(100, 100000000);
+    public Server(FXMLWarehouse warehouse){
+        this.warehouse = warehouse;
     }
 
 
@@ -105,7 +105,8 @@ public class Server extends Thread {
 
     public static void main(String[] args) {
 
-        Thread t = new Server();
+        FXMLWarehouse fxmlWarehouse = new FXMLWarehouse(100, 10000);
+        Thread t = new Server(fxmlWarehouse);
         t.start();
     }
 }

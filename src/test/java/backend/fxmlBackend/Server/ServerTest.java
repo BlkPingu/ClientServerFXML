@@ -11,12 +11,7 @@ import java.lang.reflect.Array;
 import java.net.Socket;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
-
-
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 class ServerTest {
 
@@ -57,16 +52,17 @@ class ServerTest {
 
     @Test
     void run() throws IOException, ClassNotFoundException {
+
         //given
-        FXMLWarehouse warehouse = new FXMLWarehouse(100, 10000);
-        Server server = mock(Server.class);
+        FXMLWarehouse warehouse = spy(new FXMLWarehouse(100, 1000));
+        Server server = spy(new Server(warehouse));
 
         //when
-        when(server.readObject(server.fromClient)).thenReturn(0x2);
+        doReturn(0x2).when(server).readObject(null);
 
         server.start();
 
         //then
-        verify(server).toClient.writeObject(warehouse.getAllCargo());
+        verify(server).writeObject(null, warehouse.getAllCargo());
     }
 }
