@@ -1,6 +1,7 @@
 package backend.fxmlBackend;
 
 import backend.enums.Hazard;
+import backend.fxmlBackend.Client.ClientUtility;
 import backend.serialization.JBP;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
@@ -59,7 +60,7 @@ public class TableController implements Initializable {
     @FXML private RadioButton toxic;
     @FXML private RadioButton explosive;
 
-    ServerUtility fxa;
+    ClientUtility fxa;
 
 
     //darstellungslogic ab hier -----------
@@ -69,9 +70,11 @@ public class TableController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-
-        fxa = new ServerUtility();
-
+        try {
+            fxa = new ClientUtility();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         disableAll();
         populateTable();
         bindAddButton();
@@ -92,7 +95,7 @@ public class TableController implements Initializable {
 
         try {
             fxa.getAllServerData();
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         cargoTable.setItems(fxa.tableData);
@@ -187,16 +190,14 @@ public class TableController implements Initializable {
     private void deleteRowFromTable(ActionEvent event){
         int index = cargoTable.getSelectionModel().getSelectedIndex();
         TableObject so = (TableObject) cargoTable.getItems().get(index);
+
+
+
         cargoTable.getItems().removeAll(cargoTable.getSelectionModel().getSelectedItem());
         System.out.println("Customer Name of Deleted Locally:   " + so.getCustomer());
-
-
         try {
-            fxa.deleteSingleServerData(ServerUtility.tableObject2SaveObject(so));
-            System.out.println("Customer Name of Deleted on MainServer: " + so.getCustomer());
-
-
-
+            fxa.deleteSingleServerData(ClientUtility.tableObject2SaveObject(so));
+            System.out.println("Customer Name of Deleted on backend.fxmlBackend.Server.Server: " + so.getCustomer());
         } catch (IOException e) {
             e.printStackTrace();
         }

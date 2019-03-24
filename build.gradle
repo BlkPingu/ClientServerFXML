@@ -16,10 +16,11 @@ sourceSets {
 group 's0549272'
 version '0.1'
 mainClassName='Client'
-sourceCompatibility = 1.9
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+
 }
 
 dependencies {

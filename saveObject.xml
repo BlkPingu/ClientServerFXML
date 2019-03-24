@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="9.0.1" class="java.beans.XMLDecoder">
+<java version="1.8.0_121" class="java.beans.XMLDecoder">
  <object class="java.util.ArrayList">
   <void method="add">
    <object class="backend.serialization.SaveObject">
@@ -13,7 +13,7 @@
      <boolean>true</boolean>
     </void>
     <void property="position">
-     <int>5</int>
+     <int>0</int>
     </void>
     <void property="properties">
      <string>P--</string>
@@ -44,7 +44,7 @@
      <boolean>true</boolean>
     </void>
     <void property="position">
-     <int>8</int>
+     <int>0</int>
     </void>
     <void property="properties">
      <string>--F</string>
@@ -75,7 +75,7 @@
      <boolean>true</boolean>
     </void>
     <void property="position">
-     <int>3</int>
+     <int>0</int>
     </void>
     <void property="properties">
      <string>--F</string>
@@ -106,7 +106,7 @@
      <boolean>true</boolean>
     </void>
     <void property="position">
-     <int>6</int>
+     <int>0</int>
     </void>
     <void property="properties">
      <string>-S-</string>

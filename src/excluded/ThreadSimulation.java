@@ -6,6 +6,9 @@ import userinterface.dialogs.Dialogs;
 import java.util.Scanner;
 
 public class ThreadSimulation {
+
+
+    //from Warehouse
     private ExcludedWarehouse(){
         public void store() throws InterruptedException {
             Warehouse warehouse = warehouses.get(0);
@@ -27,6 +30,7 @@ public class ThreadSimulation {
 
             }
         }
+
         public void move() throws InterruptedException {
             String name = "Move Thread";
             Thread.sleep(500);
@@ -64,7 +68,7 @@ public class ThreadSimulation {
         }
     }
 
-
+    //from this class
     public static void main(String[] args) throws InterruptedException{
 
         Warehouse w1 = new Warehouse(15, 100);

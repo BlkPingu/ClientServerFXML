@@ -274,7 +274,7 @@ class WarehouseTest {
     }
 
     @Test
-    public void getHazardsInStorage2() {
+    void getHazardsInStorage2() {
 
         //Has No Hazards
         warehouse.newCargo(noHazardCargo);
@@ -289,7 +289,7 @@ class WarehouseTest {
     }
 
     @Test
-    public void getHazardsInStorage3() {
+    void getHazardsInStorage3() {
         //No Hazards
         warehouse.newCargo(noHazardCargo);
 
@@ -297,7 +297,7 @@ class WarehouseTest {
     }
 
     @Test
-    public void getHazardsInStorage4() {
+    void getHazardsInStorage4() {
 
         assertTrue(warehouse.allCargo.isEmpty());
 
@@ -308,7 +308,7 @@ class WarehouseTest {
     }
 
     @Test
-    public void getHazardsNotInStorage() {
+    void getHazardsNotInStorage() {
 
         //No Hazards
         warehouse.newCargo(noHazardCargo);
@@ -329,7 +329,7 @@ class WarehouseTest {
     }
 
     @Test
-    public void getHazardsNotInStorage2() {
+    void getHazardsNotInStorage2() {
         //One Hazard
         warehouse.newCargo(oneHazardCargo);
 
@@ -341,12 +341,12 @@ class WarehouseTest {
     }
 
     @Test
-    public void getHazardsNotInStorage3() {
+    void getHazardsNotInStorage3() {
         warehouse.getHazardsNotInStorage();
     }
 
     @Test
-    public void getHazardsNotInStorage4() {
+    void getHazardsNotInStorage4() {
         assertTrue(warehouse.allCargo.isEmpty());
         //Has No Hazards
         warehouse.newCargo(null);
@@ -354,27 +354,4 @@ class WarehouseTest {
         warehouse.getHazardsNotInStorage();
     }
 
-    @Test
-    void storeCargoFromAdministration() {
-    }
-
-    @Test
-    void getOldestCargoInWarehouse() {
-    }
-
-    @Test
-    void getAllCargoWithPosition() {
-    }
-
-    @Test
-    void hasNoSpace() {
-    }
-
-    @Test
-    void getKeyByValueFromCargo() {
-    }
-
-    @Test
-    void getKeyByValueForServer() {
-    }
 }

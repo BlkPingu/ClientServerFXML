@@ -259,7 +259,10 @@ public class Warehouse{
 
     public static Integer getKeyByValueFromCargo(Map<Integer, Cargo> map, Cargo value) {
         for (Map.Entry<Integer, Cargo> entry : map.entrySet()) {
-            if (entry.getValue().equals(value)) {
+            if (entry.getValue().getSize() == value.getSize() &&
+                    entry.getValue().getOwner().getName().equals(value.getOwner().getName()) &&
+                    entry.getValue().getHazards().equals(value.getHazards())
+            ) {
                 return entry.getKey();
             }
         }

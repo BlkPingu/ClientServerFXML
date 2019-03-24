@@ -15,7 +15,7 @@ public class ConsoleReader {
             do {
                 System.out.print("Enter Option: ");
                 InputEvent e = new InputEvent(this,s.next());
-                if(null != this.handler) handler.handle(e, warehouse, administration);
+                if(null != this.handler) handler.handle(e, administration);
             }while (true);
 
     }

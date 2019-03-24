@@ -16,8 +16,8 @@ public class InputEventHandler {
     public void add(InputEventListener listener) {
         this.listenerList.add(listener);
     }
-    //public void remove(InputEventListener listener) {this.listenerList.remove(listener);}
-    void handle(InputEvent event, Warehouse warehouse, Administration administration){
+
+    void handle(InputEvent event, Administration administration){
         for (InputEventListener listener : listenerList)
             listener.onInputEvent(administration, event);
     }

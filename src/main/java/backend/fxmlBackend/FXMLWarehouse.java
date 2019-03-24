@@ -11,15 +11,16 @@ public class FXMLWarehouse {
 
     Warehouse warehouse;
 
-    boolean addObject(SaveObject saveObject){
+    public boolean addObject(SaveObject saveObject){
         return warehouse.newCargo(CargoWrapper.SaveObject2Cargo(saveObject));
     }
 
-    void deleteCargo(SaveObject saveObject){
+    public void deleteCargo(SaveObject saveObject){
         warehouse.deleteCargo(Warehouse.getKeyByValueFromCargo(warehouse.allCargo, CargoWrapper.SaveObject2Cargo(saveObject)));
     }
 
-    SaveObject getSingleCargo(SaveObject saveObject){
+
+    public SaveObject getSingleCargo(SaveObject saveObject){
         SaveObject so = CargoWrapper.Cargo2SaveObject(warehouse.allCargo.get(Warehouse.getKeyByValueForServer(warehouse.allCargo, CargoWrapper.SaveObject2Cargo(saveObject))));
         if(so == null){
             System.out.println("no such cargo found");
