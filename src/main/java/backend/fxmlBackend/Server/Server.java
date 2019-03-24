@@ -23,10 +23,9 @@ public class Server extends Thread {
         return fromClient.readObject();
     }
 
-    public Object writeObject(ObjectOutputStream toClient, Object object) throws IOException {
+    public void writeObject(ObjectOutputStream toClient, Object object) throws IOException {
         toClient.writeObject(object);
         toClient.flush();
-        return object;
     }
 
 
@@ -47,7 +46,11 @@ public class Server extends Thread {
 
 
             while(true) {
-                int command = (Integer) fromClient.readObject();
+                //int command = (Integer) fromClient.readObject();
+                int command = (Integer) readObject(fromClient);
+
+
+
                 System.out.println("backend.fxmlBackend.Server.Server | command: " + command);
                 switch (command) {
                     case 0x1:
@@ -60,7 +63,15 @@ public class Server extends Thread {
                     case 0x2:
                         //get server data
                         System.out.println("command: get server data");
-                        toClient.writeObject(warehouse.getAllCargo());
+
+
+
+
+                        //toClient.writeObject(warehouse.getAllCargo());
+                        writeObject(toClient, warehouse.getAllCargo());
+
+
+
                         System.out.println("Data List sent. Size: " + warehouse.getAllCargo().size());
                         break;
                     case 0x3:

@@ -2,6 +2,8 @@ package backend.fxmlBackend.Server;
 
 import backend.fxmlBackend.FXMLWarehouse;
 import backend.serialization.SaveObject;
+import backend.storage.administration.Warehouse;
+import javafx.fxml.FXML;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
@@ -18,6 +20,9 @@ import static org.mockito.Mockito.when;
 
 class ServerTest {
 
+
+
+    /*
     @Test
     void run() throws IOException, ClassNotFoundException {
 
@@ -45,5 +50,23 @@ class ServerTest {
         //then
         verify(server).toClient.writeObject(fw.getAllCargo());
 
+    }
+
+    */
+
+
+    @Test
+    void run() throws IOException, ClassNotFoundException {
+        //given
+        FXMLWarehouse warehouse = new FXMLWarehouse(100, 10000);
+        Server server = mock(Server.class);
+
+        //when
+        when(server.readObject(server.fromClient)).thenReturn(0x2);
+
+        server.start();
+
+        //then
+        verify(server).toClient.writeObject(warehouse.getAllCargo());
     }
 }

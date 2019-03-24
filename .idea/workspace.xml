@@ -2,104 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96a676c7-aad9-4671-ab9b-fe345725484e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/fxmlBackend/Client/ClientUtility.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/fxmlBackend/Server/Server.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/fxmlBackend/Server/ServerUtility.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/mockito-extensions/org.mockito.plugins.MockMaker" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/Console.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/Console.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/MainServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/enums/Hazard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/enums/Hazard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/exceptions/NoAvailableWarehouseException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/exceptions/NoAvailableWarehouseException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/exceptions/NoWarehouseException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/exceptions/NoWarehouseException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/exceptions/NotInCollectionException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/exceptions/NotInCollectionException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/exceptions/NullValueException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/exceptions/NullValueException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/fxmlBackend/CargoWrapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/fxmlBackend/CargoWrapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/fxmlBackend/FXMLWarehouse.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/fxmlBackend/FXMLWarehouse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/fxmlBackend/Server.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/fxmlBackend/ServerUtility.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/fxmlBackend/TableController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/fxmlBackend/TableController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/fxmlBackend/TableController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/fxmlBackend/TableController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/fxmlBackend/TableObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/fxmlBackend/TableObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/ConsoleReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/ConsoleReader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/InputEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/InputEvent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/InputEventHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/InputEventHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/listeners/DeleteCargo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/listeners/DeleteCargo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/listeners/ExitUi.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/listeners/ExitUi.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/listeners/NewCargo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/listeners/NewCargo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/listeners/OutAllCargo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/listeners/OutAllCargo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/listeners/StoreCargo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/listeners/StoreCargo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/listeners/interfaces/InputEventListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/listeners/interfaces/InputEventListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/listeners/interfaces/Observer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/listeners/interfaces/Observer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/listeners/interfaces/Subject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/ioc/events/listeners/interfaces/Subject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/ioc/observer/CargoAddedObserver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/ioc/observer/CargoAddedObserver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/ioc/observer/CargoRemovedObserver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/ioc/observer/CargoRemovedObserver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/ioc/observer/FullWarehouseObserver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/ioc/observer/FullWarehouseObserver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/ioc/observer/interfaces/Observer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/ioc/observer/interfaces/Observer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/ioc/observer/interfaces/Subject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/ioc/observer/interfaces/Subject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/serialization/JBP.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/serialization/JBP.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/serialization/JOS.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/serialization/JOS.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/serialization/SaveObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/serialization/SaveObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/administration/Administration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/administration/Administration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/administration/CargoLogistics.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/administration/CargoLogistics.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/administration/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/administration/Customer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/administration/Warehouse.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/administration/Warehouse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/administration/interfaces/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/administration/interfaces/Customer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/administration/interfaces/Warehouse.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/administration/interfaces/Warehouse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/BoxedCargo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/BoxedCargo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/Cargo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/Cargo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/DryCargo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/DryCargo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/LiquidCargo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/LiquidCargo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/MixedDryBoxed.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/MixedDryBoxed.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/MixedDryLiquid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/MixedDryLiquid.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/MixedDryLiquidBoxed.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/MixedDryLiquidBoxed.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/MixedLiquidBoxed.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/MixedLiquidBoxed.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/interfaces/BoxedCargo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/interfaces/BoxedCargo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/interfaces/Cargo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/interfaces/Cargo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/interfaces/DryCargo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/interfaces/DryCargo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/interfaces/LiquidCargo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/interfaces/LiquidCargo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/interfaces/MixedDryBoxed.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/interfaces/MixedDryBoxed.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/interfaces/MixedDryLiquid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/interfaces/MixedDryLiquid.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/interfaces/MixedDryLiquidBoxed.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/interfaces/MixedDryLiquidBoxed.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/interfaces/MixedLiquidBoxed.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/backend/storage/cargo/interfaces/MixedLiquidBoxed.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/userinterface/dialogs/Dialogs.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/userinterface/dialogs/Dialogs.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/cargoTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/cargoTable.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/classes/backend/fxmlBackend/ServerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/classes/backend/storage/administration/AdministrationTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/backend/storage/administration/AdministrationTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/classes/backend/storage/administration/CargoLogisticsTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/backend/storage/administration/CargoLogisticsTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/classes/backend/storage/administration/CustomerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/backend/storage/administration/CustomerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/classes/backend/storage/administration/WarehouseTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/backend/storage/administration/WarehouseTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/classes/backend/storage/cargo/BoxedCargoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/backend/storage/cargo/BoxedCargoTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/classes/backend/storage/cargo/CargoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/backend/storage/cargo/CargoTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/classes/backend/storage/cargo/DryCargoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/backend/storage/cargo/DryCargoTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/classes/backend/storage/cargo/LiquidCargoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/backend/storage/cargo/LiquidCargoTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/classes/backend/storage/cargo/MixedDryBoxedTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/backend/storage/cargo/MixedDryBoxedTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/classes/backend/storage/cargo/MixedDryLiquidBoxedTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/backend/storage/cargo/MixedDryLiquidBoxedTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/classes/backend/storage/cargo/MixedDryLiquidTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/backend/storage/cargo/MixedDryLiquidTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/classes/backend/storage/cargo/MixedLiquidBoxedTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/backend/storage/cargo/MixedLiquidBoxedTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/excluded/ThreadSimulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/excluded/ThreadSimulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MainServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/fxmlBackend/FXMLWarehouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/fxmlBackend/FXMLWarehouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/fxmlBackend/Server.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/fxmlBackend/ServerUtility.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/fxmlBackend/TableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/fxmlBackend/TableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/ioc/events/ConsoleReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/ioc/events/ConsoleReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/ioc/events/InputEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/ioc/events/InputEventHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/storage/administration/Warehouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/storage/administration/Warehouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cargoTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cargoTable.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/backend/fxmlBackend/ServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/backend/fxmlBackend/Server/ServerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/backend/storage/administration/AdministrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/backend/storage/administration/AdministrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/backend/storage/administration/CargoLogisticsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/backend/storage/administration/CargoLogisticsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/backend/storage/administration/WarehouseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/backend/storage/administration/WarehouseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/fxmlBackend/Server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/fxmlBackend/Server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/backend/fxmlBackend/Server/ServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/backend/fxmlBackend/Server/ServerTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -119,14 +23,20 @@
         <counts>
           <entry key="project.closed" value="2" />
           <entry key="project.open.time.15" value="1" />
+          <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Groovy" value="1" />
-          <entry key="JAVA" value="1" />
+          <entry key="JAVA" value="6" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="116" />
         </counts>
       </usages-collector>
     </session>
@@ -142,11 +52,56 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
               <caret line="10" selection-start-line="10" selection-end-line="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/backend/fxmlBackend/Server/ServerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="337">
+              <caret line="52" column="6" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/fxmlBackend/Server/Server.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="335">
+              <caret line="64" column="71" lean-forward="true" selection-start-line="64" selection-start-column="71" selection-end-line="64" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/fxmlBackend/TableObject.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/fxmlBackend/TableController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/backend/fxmlBackend/FXMLWarehouse.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -555,6 +510,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/test/java/backend/fxmlBackend/Server/ServerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/fxmlBackend/Server/Server.java" />
       </list>
     </option>
   </component>
@@ -575,6 +532,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -605,20 +563,103 @@
               <item name="s0549272.nachreichung" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="s0549272.nachreichung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="s0549272.nachreichung" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="fxmlBackend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="s0549272.nachreichung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="s0549272.nachreichung" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="fxmlBackend" type="462c0819:PsiDirectoryNode" />
+              <item name="Server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="s0549272.nachreichung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="s0549272.nachreichung" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="userinterface" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="s0549272.nachreichung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="s0549272.nachreichung" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="s0549272.nachreichung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="s0549272.nachreichung" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="s0549272.nachreichung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="s0549272.nachreichung" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="s0549272.nachreichung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="s0549272.nachreichung" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="s0549272.nachreichung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="s0549272.nachreichung" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="fxmlBackend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="s0549272.nachreichung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="s0549272.nachreichung" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="fxmlBackend" type="462c0819:PsiDirectoryNode" />
+              <item name="Server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="s0549272.nachreichung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="s0549272.nachreichung" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="storage" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553437176033" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553449129813" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.updates" />
@@ -635,7 +676,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.ServerTest.run">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -652,6 +693,23 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerTest.run" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="s0549272.nachreichung_test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="backend.fxmlBackend.Server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="backend.fxmlBackend.Server" />
+      <option name="MAIN_CLASS_NAME" value="backend.fxmlBackend.Server.ServerTest" />
+      <option name="METHOD_NAME" value="run" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -741,8 +799,13 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.ServerTest.run" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ServerTest.run" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -774,17 +837,23 @@
       <updated>1553437085129</updated>
       <workItem from="1553437086734" duration="103000" />
       <workItem from="1553437233172" duration="40000" />
+      <workItem from="1553440841296" duration="1843000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="ServerTest_run - 2019.03.24 at 18h 13m 04s.xml">
+      <configuration name="ServerTest.run" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143000" />
+    <option name="totallyTimeSpent" value="1986000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="777" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2536349" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25767368" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -837,6 +906,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/fxmlBackend/TableObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/fxmlBackend/TableController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/fxmlBackend/FXMLWarehouse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/backend/fxmlBackend/Server/ServerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="52" column="6" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/fxmlBackend/Server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="64" column="71" lean-forward="true" selection-start-line="64" selection-start-column="71" selection-end-line="64" selection-end-column="71" />
         </state>
       </provider>
     </entry>
